@@ -23,6 +23,7 @@ import { PositionDetails } from 'types/position'
 
 import CTACards from './CTACards'
 import { LoadingRows } from './styled'
+import PoolCards from './PoolCard'
 
 const PageWrapper = styled(AutoColumn)`
   padding: 68px 8px 0px;
@@ -136,6 +137,49 @@ const MainContentWrapper = styled.main`
   overflow: hidden;
 `
 
+const MainContainerTitleWrapper = styled.div `
+display:flex;
+flex-direction: column;
+align-items: center;
+  h1 {
+   color:"#101828";
+   font-weight: 600;
+   font-size: 36px;
+  }
+`
+
+const PoolsTypesSelect = styled.div `
+  border: 1px solid #C6CBD9;
+  border-radius: 8px;
+  width: 267px;
+  display: flex;
+  justify-content: space-between;
+  column-gap:10px;
+  height: 52px;
+  padding:5px;
+
+  button {
+    background-color: inherit;
+    color: #9A9AAF;
+    font-size: 14px;
+    border:none;
+    cursor: pointer;
+    transition: all linear 0.3s;
+    width: 84px;
+    border-radius: 4px;
+    :hover{
+      background-color: #e6e6e7;
+    }
+  }
+
+  .selected{
+    background-color:#EFF2F5;
+    border: 1px solid #C6CBD9;
+    color: #2E2E3A;
+    cursor: inherit;
+  }
+
+`
 function PositionsLoadingPlaceholder() {
   return (
     <LoadingRows>
@@ -251,12 +295,9 @@ export default function Pool() {
     },
   ]
 
-  return (
-    <Trace page={InterfacePageName.POOL_PAGE} shouldLogImpression>
-      <PageWrapper>
-        <AutoColumn gap="lg" justify="center">
-          <AutoColumn gap="lg" style={{ width: '100%' }}>
-            <TitleRow padding="0">
+  const NewPositionScreen = () => {
+    return <>
+       <TitleRow padding="0">
               <ThemedText.LargeHeader>
                 <Trans>Pools</Trans>
               </ThemedText.LargeHeader>
@@ -327,6 +368,29 @@ export default function Pool() {
             <HideSmall>
               <CTACards />
             </HideSmall>
+    </>
+  }
+
+  return (
+    <Trace page={InterfacePageName.POOL_PAGE} shouldLogImpression>
+      <PageWrapper>
+        <AutoColumn gap="lg" justify="center">
+          <AutoColumn gap="lg" style={{ width: '100%' }}>
+      <MainContainerTitleWrapper>
+        <h1>Liquidity Pools</h1>
+        <PoolsTypesSelect>
+         <button className='selected'>
+            View all
+         </button>
+          <button >
+            LTN
+         </button>
+          <button>
+            LTF
+         </button>
+        </PoolsTypesSelect>
+        <PoolCards />
+      </MainContainerTitleWrapper>
           </AutoColumn>
         </AutoColumn>
       </PageWrapper>

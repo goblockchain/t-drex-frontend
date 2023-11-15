@@ -1,4 +1,7 @@
-# # t-drex-frontend
+# T-Drex
+Our mission is to enable financial infrastructure to have more efficiency, security and liquidity.
+
+[!See more](https://www.notion.so/Pitch-Deck-e14d7f72769c46f2a315056b1c526ceb)
 
 [![codecov](https://codecov.io/gh/Uniswap/interface/branch/main/graph/badge.svg?token=YVT2Y86O82)](https://codecov.io/gh/Uniswap/interface)
 
