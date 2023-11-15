@@ -1,6 +1,7 @@
 <div align="center">
-<img src="https://i.im.ge/2023/11/15/A1yNoD.main-logo-removebg-preview-2.png" alt="main_logo-removebg-preview (2)" border="0">
+  <img src="https://github.com/goblockchain/t-drex-frontend/assets/90073210/e5ce8a9a-cedb-45bd-995f-657870bda1f2" />
 </div>
+
 
 # T-Drex
  - Our mission is to enable financial infrastructure to have more efficiency, security and liquidity <br />
