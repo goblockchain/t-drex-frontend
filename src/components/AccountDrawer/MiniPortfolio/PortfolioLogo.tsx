@@ -48,7 +48,7 @@ const ENSAvatarImg = styled.img`
   width: 40px;
 `
 
-const CircleLogoImage = styled.img<{ size: string }>`
+export const CircleLogoImage = styled.img<{ size: string }>`
   width: ${({ size }) => size};
   height: ${({ size }) => size};
   border-radius: 50%;

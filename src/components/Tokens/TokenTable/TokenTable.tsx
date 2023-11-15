@@ -1,13 +1,14 @@
 import { Trans } from '@lingui/macro'
 import { PAGE_SIZE, useTopTokens } from 'graphql/data/TopTokens'
 import { validateUrlChainParam } from 'graphql/data/util'
-import { ReactNode } from 'react'
+import { ReactNode, useState } from 'react'
 import { AlertTriangle } from 'react-feather'
 import { useParams } from 'react-router-dom'
 import styled from 'styled-components'
 
 import { MAX_WIDTH_MEDIA_BREAKPOINT } from '../constants'
 import { HeaderRow, LoadedRow, LoadingRow } from './TokenRow'
+import { mocked_tokens } from './mockedTokens'
 
 const GridContainer = styled.div`
   display: flex;
@@ -76,8 +77,10 @@ function LoadingTokenTable({ rowCount = PAGE_SIZE }: { rowCount?: number }) {
 
 export default function TokenTable() {
   const chainName = validateUrlChainParam(useParams<{ chainName?: string }>().chainName)
-  const { tokens, tokenSortRank, loadingTokens, sparklines } = useTopTokens(chainName)
-
+  const {  tokenSortRank, sparklines } = useTopTokens(chainName)
+  const [loadingTokens, setLoadingTokens] = useState(false)
+  const tokens = mocked_tokens
+  console.log(tokens)
   /* loading and error state */
   if (loadingTokens && !tokens) {
     return <LoadingTokenTable rowCount={PAGE_SIZE} />
@@ -108,7 +111,7 @@ export default function TokenTable() {
                   tokenListLength={tokens.length}
                   token={token}
                   sparklineMap={sparklines}
-                  sortRank={tokenSortRank[token.address]}
+                  // sortRank={tokenSortRank[token.address]}
                 />
               )
           )}

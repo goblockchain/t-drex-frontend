@@ -24,6 +24,7 @@ import { MenuDropdown } from './MenuDropdown'
 import { SearchBar } from './SearchBar'
 import * as styles from './style.css'
 
+
 const Nav = styled.nav`
   padding: ${({ theme }) => `${theme.navVerticalPad}px 12px`};
   width: 100%;
@@ -78,19 +79,19 @@ export const PageTabs = () => {
           <Trans>Tokens</Trans>
         </MenuItem>
       )}
-      {!shouldDisableNFTRoutes && (
+      {/* {!shouldDisableNFTRoutes && (
         <MenuItem dataTestId="nft-nav" href="/nfts" isActive={isNftPage}>
           <Trans>NFTs</Trans>
         </MenuItem>
-      )}
+      )} */}
       <Box display={{ sm: 'flex', lg: 'none', xxl: 'flex' }} width="full">
         <MenuItem href="/pools" dataTestId="pool-nav-link" isActive={isPoolActive}>
           <Trans>Pools</Trans>
         </MenuItem>
       </Box>
-      <Box marginY="4">
+      {/* <Box marginY="4">
         <MenuDropdown />
-      </Box>
+      </Box> */}
     </>
   )
 }
@@ -103,7 +104,7 @@ const Navbar = ({ blur }: { blur: boolean }) => {
 
   const [accountDrawerOpen, toggleAccountDrawer] = useAccountDrawer()
 
-  const handleUniIconClick = useCallback(() => {
+  const handleDinoIconClick = useCallback(() => {
     if (accountDrawerOpen) {
       toggleAccountDrawer()
     }
@@ -120,13 +121,7 @@ const Navbar = ({ blur }: { blur: boolean }) => {
         <Box display="flex" height="full" flexWrap="nowrap">
           <Box className={styles.leftSideContainer}>
             <Box className={styles.logoContainer}>
-              <UniIcon
-                width="48"
-                height="48"
-                data-testid="uniswap-logo"
-                className={styles.logo}
-                onClick={handleUniIconClick}
-              />
+              <img onClick={handleDinoIconClick} src='/images/logos/main_logo.png' width={48} />
             </Box>
             {!isNftPage && (
               <Box display={{ sm: 'flex', lg: 'none' }}>

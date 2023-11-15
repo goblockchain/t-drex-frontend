@@ -36,6 +36,7 @@ import {
   useSetSortMethod,
 } from '../state'
 import { DeltaArrow, DeltaText } from '../TokenDetails/Delta'
+import { CircleLogoImage } from 'components/AccountDrawer/MiniPortfolio/PortfolioLogo'
 
 const Cell = styled.div`
   display: flex;
@@ -441,9 +442,9 @@ export function LoadingRow(props: { first?: boolean; last?: boolean }) {
 interface LoadedRowProps {
   tokenListIndex: number
   tokenListLength: number
-  token: NonNullable<TopToken>
-  sparklineMap: SparklineMap
-  sortRank: number
+  token: NonNullable<TopToken> | any
+  sparklineMap?: SparklineMap | null
+  sortRank?: number | null
 }
 
 /* Loaded State: row component with token information */
@@ -489,7 +490,7 @@ export const LoadedRow = forwardRef((props: LoadedRowProps, ref: ForwardedRef<HT
           listNumber={sortRank}
           tokenInfo={
             <ClickableName>
-              <QueryTokenLogo token={token} size="32px" />
+               <CircleLogoImage size='36px' src={token.project.logoUrl} />
               <TokenInfoCell>
                 <TokenName data-cy="token-name">{token.name}</TokenName>
                 <TokenSymbol>{token.symbol}</TokenSymbol>
