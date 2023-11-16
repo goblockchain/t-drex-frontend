@@ -5,7 +5,7 @@
 
 # T-Drex
  - Our mission is to enable financial infrastructure to have more efficiency, security and liquidity <br />
- - T-DREX product to solve the problem of liquidity and flexibility of federal public securities, allowing access by companies from anywhere in the world and other countries.
+ - T-DREX product solve the problem of liquidity and flexibility of federal public securities, allowing access by companies from anywhere in the world and other countries.
 
 Check out `our pitch deck` in [t-drex pitch deck](https://www.notion.so/Pitch-Deck-e14d7f72769c46f2a315056b1c526ceb)
 
