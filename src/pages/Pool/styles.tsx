@@ -1,28 +1,4 @@
-import AvatarGroup from 'components/avatar-group'
-
-import BrazilIcon from 'images/icons/brazil-icon.png'
-import TP2026Icon from 'images/icons/tf-2026-icon.png' 
-import ProgressImage from 'images/progress.png'
-import styled from 'styled-components'
-
-const SqueezedPoolPairs = () => {
-  const data = [
-    {
-       title: 'Brazil CDBC',
-       img: BrazilIcon,
-       imgHeight: 26,
-       imgWidth: 26
-    },
-     {
-       title: 'Tesouro Prefixiado 2026',
-       img: TP2026Icon,
-       imgHeight: 26,
-       imgWidth: 26
-    },
-  ]
-
-    return <AvatarGroup data={data}/>
-}
+import styled, { css, useTheme } from 'styled-components'
 
 const PoolCardsContainer = styled.div`
 display: grid;
@@ -150,7 +126,6 @@ justify-content: center;
     width: 70px;
     flex-direction: column;
     align-items: center;
-    background-color: blue;
 
     
     label{
@@ -161,42 +136,12 @@ justify-content: center;
 
 `
 
-export default function PoolCards() {
-  return (
-    <PoolCardsContainer>
-      <StyledPoolCard>
-      <PoolCardHeader>
-        <div>
-          <img className='main-icon' alt="tesouro-prefixiado-2026" />
-          <h3>TESOURO PREFIXADO 2026</h3>
-        </div>
-        <CollateralBadge>
-         <div className='rounded-pill' />
-          <label>Collateral</label>
-        </CollateralBadge>
-      </PoolCardHeader>
-      <PoolCardBody>
-             <img className='progress-graph' src={'/images/icons/progress.png'} />
-             <div className='body-infos'>
-              <div>
-                 {/* <SqueezedPoolPairs /> */}
-                 <label>Pool</label>
-              </div>
-               <div>
-                <h3>32%</h3>
-                 <label>APR</label>
-              </div>
-             <div>
-                <h3>$1,2M</h3>
-                 <label>Liquidity</label>
-              </div>
-             </div>
-      </PoolCardBody>
-
-      </StyledPoolCard>
-        <StyledPoolCard>
-
-      </StyledPoolCard>
-    </PoolCardsContainer>
-  )
+export {
+  PoolCardBody,
+  PoolCardHeader,
+  PoolPairIcon,
+  PoolCardsContainer,
+  StylesSqueezedPoolPairs,
+  CollateralBadge,
+  StyledPoolCard
 }

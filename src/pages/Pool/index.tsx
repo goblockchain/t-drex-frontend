@@ -150,6 +150,7 @@ align-items: center;
 
 const PoolsTypesSelect = styled.div `
   border: 1px solid #C6CBD9;
+  margin-bottom: 30px;
   border-radius: 8px;
   width: 267px;
   display: flex;
