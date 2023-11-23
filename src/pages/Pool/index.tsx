@@ -22,13 +22,13 @@ import { HideSmall, ThemedText } from 'theme/components'
 import { PositionDetails } from 'types/position'
 
 import CTACards from './CTACards'
-import { LoadingRows } from './styled'
 import PoolCards from './PoolCard'
+import { LoadingRows } from './styled'
 
 const PageWrapper = styled(AutoColumn)`
-  padding: 68px 8px 0px;
-  max-width: 870px;
   width: 100%;
+  display: flex;
+  justify-content: center;
 
   @media (max-width: ${({ theme }) => `${theme.breakpoint.md}px`}) {
     max-width: 800px;
@@ -137,49 +137,49 @@ const MainContentWrapper = styled.main`
   overflow: hidden;
 `
 
-const MainContainerTitleWrapper = styled.div `
-display:flex;
-flex-direction: column;
-align-items: center;
-  h1 {
-   color:"#101828";
-   font-weight: 600;
-   font-size: 36px;
+const MainContainerTitleWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  h2 {
+    color: '#101828';
+    font-weight: 600;
+    font-size: 36px;
+    font-family: 'Inter', sans-serif;
   }
 `
 
-const PoolsTypesSelect = styled.div `
-  border: 1px solid #C6CBD9;
+const PoolsTypesSelect = styled.div`
+  border: 1px solid #c6cbd9;
   margin-bottom: 30px;
   border-radius: 8px;
   width: 267px;
   display: flex;
   justify-content: space-between;
-  column-gap:10px;
+  column-gap: 10px;
   height: 52px;
-  padding:5px;
+  padding: 5px;
 
   button {
     background-color: inherit;
-    color: #9A9AAF;
+    color: #9a9aaf;
     font-size: 14px;
-    border:none;
+    border: none;
     cursor: pointer;
     transition: all linear 0.3s;
     width: 84px;
     border-radius: 4px;
-    :hover{
+    :hover {
       background-color: #e6e6e7;
     }
   }
 
-  .selected{
-    background-color:#EFF2F5;
-    border: 1px solid #C6CBD9;
-    color: #2E2E3A;
+  .selected {
+    background-color: #eff2f5;
+    border: 1px solid #c6cbd9;
+    color: #2e2e3a;
     cursor: inherit;
   }
-
 `
 function PositionsLoadingPlaceholder() {
   return (
@@ -297,79 +297,81 @@ export default function Pool() {
   ]
 
   const NewPositionScreen = () => {
-    return <>
-       <TitleRow padding="0">
-              <ThemedText.LargeHeader>
-                <Trans>Pools</Trans>
-              </ThemedText.LargeHeader>
-              <ButtonRow>
-                {networkSupportsV2 && (
-                  <PoolMenu
-                    menuItems={menuItems}
-                    flyoutAlignment={FlyoutAlignment.LEFT}
-                    ToggleUI={(props: any) => (
-                      <MoreOptionsButton {...props}>
-                        <MoreOptionsText>
-                          <Trans>More</Trans>
-                          <ChevronDown size={15} />
-                        </MoreOptionsText>
-                      </MoreOptionsButton>
-                    )}
-                  />
+    return (
+      <>
+        <TitleRow padding="0">
+          <ThemedText.LargeHeader>
+            <Trans>Pools</Trans>
+          </ThemedText.LargeHeader>
+          <ButtonRow>
+            {networkSupportsV2 && (
+              <PoolMenu
+                menuItems={menuItems}
+                flyoutAlignment={FlyoutAlignment.LEFT}
+                ToggleUI={(props: any) => (
+                  <MoreOptionsButton {...props}>
+                    <MoreOptionsText>
+                      <Trans>More</Trans>
+                      <ChevronDown size={15} />
+                    </MoreOptionsText>
+                  </MoreOptionsButton>
                 )}
-                <ResponsiveButtonPrimary data-cy="join-pool-button" id="join-pool-button" as={Link} to="/add/ETH">
-                  + <Trans>New position</Trans>
-                </ResponsiveButtonPrimary>
-              </ButtonRow>
-            </TitleRow>
+              />
+            )}
+            <ResponsiveButtonPrimary data-cy="join-pool-button" id="join-pool-button" as={Link} to="/add/ETH">
+              + <Trans>New position</Trans>
+            </ResponsiveButtonPrimary>
+          </ButtonRow>
+        </TitleRow>
 
-            <MainContentWrapper>
-              {positionsLoading ? (
-                <PositionsLoadingPlaceholder />
-              ) : filteredPositions && closedPositions && filteredPositions.length > 0 ? (
-                <PositionList
-                  positions={filteredPositions}
-                  setUserHideClosedPositions={setUserHideClosedPositions}
-                  userHideClosedPositions={userHideClosedPositions}
-                />
-              ) : (
-                <ErrorContainer>
-                  <ThemedText.BodyPrimary color={theme.neutral3} textAlign="center">
-                    <InboxIcon strokeWidth={1} style={{ marginTop: '2em' }} />
-                    <div>
-                      <Trans>Your active V3 liquidity positions will appear here.</Trans>
-                    </div>
-                  </ThemedText.BodyPrimary>
-                  {!showConnectAWallet && closedPositions.length > 0 && (
-                    <ButtonText
-                      style={{ marginTop: '.5rem' }}
-                      onClick={() => setUserHideClosedPositions(!userHideClosedPositions)}
-                    >
-                      <Trans>Show closed positions</Trans>
-                    </ButtonText>
-                  )}
-                  {showConnectAWallet && (
-                    <TraceEvent
-                      events={[BrowserEvent.onClick]}
-                      name={InterfaceEventName.CONNECT_WALLET_BUTTON_CLICKED}
-                      properties={{ received_swap_quote: false }}
-                      element={InterfaceElementName.CONNECT_WALLET_BUTTON}
-                    >
-                      <ButtonPrimary
-                        style={{ marginTop: '2em', marginBottom: '2em', padding: '8px 16px' }}
-                        onClick={toggleWalletDrawer}
-                      >
-                        <Trans>Connect a wallet</Trans>
-                      </ButtonPrimary>
-                    </TraceEvent>
-                  )}
-                </ErrorContainer>
+        <MainContentWrapper>
+          {positionsLoading ? (
+            <PositionsLoadingPlaceholder />
+          ) : filteredPositions && closedPositions && filteredPositions.length > 0 ? (
+            <PositionList
+              positions={filteredPositions}
+              setUserHideClosedPositions={setUserHideClosedPositions}
+              userHideClosedPositions={userHideClosedPositions}
+            />
+          ) : (
+            <ErrorContainer>
+              <ThemedText.BodyPrimary color={theme.neutral3} textAlign="center">
+                <InboxIcon strokeWidth={1} style={{ marginTop: '2em' }} />
+                <div>
+                  <Trans>Your active V3 liquidity positions will appear here.</Trans>
+                </div>
+              </ThemedText.BodyPrimary>
+              {!showConnectAWallet && closedPositions.length > 0 && (
+                <ButtonText
+                  style={{ marginTop: '.5rem' }}
+                  onClick={() => setUserHideClosedPositions(!userHideClosedPositions)}
+                >
+                  <Trans>Show closed positions</Trans>
+                </ButtonText>
               )}
-            </MainContentWrapper>
-            <HideSmall>
-              <CTACards />
-            </HideSmall>
-    </>
+              {showConnectAWallet && (
+                <TraceEvent
+                  events={[BrowserEvent.onClick]}
+                  name={InterfaceEventName.CONNECT_WALLET_BUTTON_CLICKED}
+                  properties={{ received_swap_quote: false }}
+                  element={InterfaceElementName.CONNECT_WALLET_BUTTON}
+                >
+                  <ButtonPrimary
+                    style={{ marginTop: '2em', marginBottom: '2em', padding: '8px 16px' }}
+                    onClick={toggleWalletDrawer}
+                  >
+                    <Trans>Connect a wallet</Trans>
+                  </ButtonPrimary>
+                </TraceEvent>
+              )}
+            </ErrorContainer>
+          )}
+        </MainContentWrapper>
+        <HideSmall>
+          <CTACards />
+        </HideSmall>
+      </>
+    )
   }
 
   return (
@@ -377,21 +379,15 @@ export default function Pool() {
       <PageWrapper>
         <AutoColumn gap="lg" justify="center">
           <AutoColumn gap="lg" style={{ width: '100%' }}>
-      <MainContainerTitleWrapper>
-        <h1>Liquidity Pools</h1>
-        <PoolsTypesSelect>
-         <button className='selected'>
-            View all
-         </button>
-          <button >
-            LTN
-         </button>
-          <button>
-            LTF
-         </button>
-        </PoolsTypesSelect>
-        <PoolCards />
-      </MainContainerTitleWrapper>
+            <MainContainerTitleWrapper>
+              <h2>Liquidity Pools</h2>
+              <PoolsTypesSelect>
+                <button className="selected">View all</button>
+                <button>LTN</button>
+                <button>LTF</button>
+              </PoolsTypesSelect>
+              <PoolCards />
+            </MainContainerTitleWrapper>
           </AutoColumn>
         </AutoColumn>
       </PageWrapper>
