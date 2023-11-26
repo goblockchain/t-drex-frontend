@@ -1,94 +1,269 @@
-export const mocked_tokens  = [
+export const mocked_tokens = [
+  // {
+  //   __typename: 'Token',
+  //   id: 'VG9rZW46RVRIRVJFVU1fMHg4MzkwYTFkYTA3ZTM3NmVmN2FkZDRiZTg1OWJhNzRmYjgzYWEwMmQ1',
+  //   name: 'DREX',
+  //   standard: 'ERC20',
+  //   symbol: 'DREX',
+  //   chain: 'ETHEREUM',
+  //   address: '0x8390a1da07e376ef7add4be859ba74fb83aa02d5',
+  //   market: {
+  //     id: 'VG9rZW5NYXJrZXQ6RVRIRVJFVU1fMHg4MzkwYTFEQTA3RTM3NmVmN2FEZDRCZTg1OUJBNzRGYjgzYUEwMkQ1X1VTRA==',
+  //     price: {
+  //       __typename: 'Amount',
+  //       id: 'QW1vdW50OjAuMDE3Mzk4MjkwODU3OTY4MzM2X1VTRA==',
+  //       value: 166.1,
+  //       currency: 'USD',
+  //     },
+  //     pricePercentChange: {
+  //       __typename: 'Amount',
+  //       id: 'QW1vdW50OjQxLjE0OTY0MjkxOTUzMDg3Nl9VU0Q=',
+  //       currency: 'USD',
+  //       value: 41.149642919530876,
+  //     },
+  //     totalValueLocked: {
+  //       __typename: 'Amount',
+  //       id: 'QW1vdW50OjQwMzg3MDIuNjkxNDM1NTM4X1VTRA==',
+  //       value: 4038702.691435538,
+  //       currency: 'USD',
+  //     },
+  //     volume: {
+  //       __typename: 'Amount',
+  //       id: 'QW1vdW50OjE5NDQ3OTA3LjE1ODg0NjJfVVNE',
+  //       value: 19447907.1588462,
+  //       currency: 'USD',
+  //     },
+  //     __typename: 'TokenMarket',
+  //   },
+  //   project: {
+  //     id: 'VG9rZW5Qcm9qZWN0OkVUSEVSRVVNXzB4ODM5MGExZGEwN2UzNzZlZjdhZGQ0YmU4NTliYTc0ZmI4M2FhMDJkNV9Hcm9r',
+  //     logoUrl: 'https://i.im.ge/2023/11/27/CTwuNy.brazil-icon.png',
+  //     __typename: 'TokenProject',
+  //     description:
+  //       'The "Prefixed Treasury 2026" is an investment with maturity on 01/01/2026, yielding R$1,000 per security at maturity. It is ideal for medium-term investments without semi-annual interest, and can be redeemed in advance at market value.',
+  //   },
+  // },
   {
-  address: "NATIVE",
-  chain: "ETHEREUM", //ETHEREUM, XRP e polygon
-  chainId: 1,
-  decimals: 18,
-  extensions: undefined,
-  id: "VG9rZW46RVRIRVJFVU1fMHhjMDJhYWEzOWIyMjNmZThkMGEwZTVjNGYyN2VhZDkwODNjNzU2Y2My",
-  isNative: true,
-  isToken: false,
-  market: {
-    id: "VG9rZW5NYXJrZXQ6RVRIRVJFVU1fMHhDMDJhYUEzOWIyMjNGRThEMEEwZTVDNEYyN2VBRDkwODNDNzU2Q2MyX1VTRA==",
-    price: {
-      __typename: 'Amount',
-      id: 'QW1vdW50OjIwNTkuNzQ0Nzk4NjA2OTcwNl9VU0Q=',
-      value: 2059.7447986069706,
-      currency: 'USD'
+    __typename: 'Token',
+    id: 'VG9rZW46RVRIRVJFVU1fMHg4MzkwYTFkYTA3ZTM3NmVmN2FkZDRiZTg1OWJhNzRmYjgzYWEwMmQ1',
+    name: 'Tesouro Prefixado 2026',
+    standard: 'ERC20',
+    symbol: 'TP26',
+    chain: 'ETHEREUM',
+    address: '0x8390a1da07e376ef7add4be859ba74fb83aa02d5',
+    market: {
+      id: 'VG9rZW5NYXJrZXQ6RVRIRVJFVU1fMHg4MzkwYTFEQTA3RTM3NmVmN2FEZDRCZTg1OUJBNzRGYjgzYUEwMkQ1X1VTRA==',
+      price: {
+        __typename: 'Amount',
+        id: 'QW1vdW50OjAuMDE3Mzk4MjkwODU3OTY4MzM2X1VTRA==',
+        value: 166.1,
+        currency: 'USD',
+      },
+      pricePercentChange: {
+        __typename: 'Amount',
+        id: 'QW1vdW50OjQxLjE0OTY0MjkxOTUzMDg3Nl9VU0Q=',
+        currency: 'USD',
+        value: 41.149642919530876,
+      },
+      totalValueLocked: {
+        __typename: 'Amount',
+        id: 'QW1vdW50OjQwMzg3MDIuNjkxNDM1NTM4X1VTRA==',
+        value: 4038702.691435538,
+        currency: 'USD',
+      },
+      volume: {
+        __typename: 'Amount',
+        id: 'QW1vdW50OjE5NDQ3OTA3LjE1ODg0NjJfVVNE',
+        value: 19447907.1588462,
+        currency: 'USD',
+      },
+      __typename: 'TokenMarket',
     },
-    pricePercentChange: {
-      __typename: 'Amount',
-      id: 'QW1vdW50OjAuNTQzNjQwOTYxNTIyOTk3MV9VU0Q=',
-      currency: 'USD',
-      value: 0.5436409615229971
+    project: {
+      id: 'VG9rZW5Qcm9qZWN0OkVUSEVSRVVNXzB4ODM5MGExZGEwN2UzNzZlZjdhZGQ0YmU4NTliYTc0ZmI4M2FhMDJkNV9Hcm9r',
+      logoUrl: 'https://i.im.ge/2023/11/27/CQmBj4.Group-11.png',
+      __typename: 'TokenProject',
+      description:
+        'The "Prefixed Treasury 2026" is an investment with maturity on 01/01/2026, yielding R$1,000 per security at maturity. It is ideal for medium-term investments without semi-annual interest, and can be redeemed in advance at market value.',
     },
-    totalValueLocked: {
-      __typename: 'Amount',
-      id: 'QW1vdW50OjE3NzY0NDI0NjUuMDE4NTA1Nl9VU0Q=',
-      value: 1776442465.0185056,
-      currency: 'USD'
-    },
-    volume: {
-      __typename: 'Amount',
-      id: 'QW1vdW50OjYzMzQ3Mjk0NC40MDIzNDM4X1VTRA==',
-      value: 633472944.4023438,
-      currency: 'USD'
-    },
-    __typename: "TokenMarket"
   },
-  name: "Tesouro Prefixado 2026",
-  project: {
-    id: "VG9rZW5Qcm9qZWN0OkVUSEVSRVVNXzB4YzAyYWFhMzliMjIzZmU4ZDBhMGU1YzRmMjdlYWQ5MDgzYzc1NmNjMl9XRVRI",
-    logoUrl: "https://i.im.ge/2023/11/13/yGZx71.b05d7e5c-33f5-4f64-8861-a1754f10f4c2.png",
-    __typename: "TokenProject",
-    standard: "ERC20",
-    symbol: "ETH"
-  }
-},
   {
-  address: "NATIVE",
-  chain: "ETHEREUM", //ETHEREUM, XRP e polygon
-  chainId: 1,
-  decimals: 18,
-  extensions: undefined,
-  id: "VG9rZW46RVRIRVJFVU1fMHhjMDJhYWEzOWIyMjNmZThkMGEwZTVjNGYyN2VhZDkwODNjNzU2Y2My",
-  isNative: true,
-  isToken: false,
-  market: {
-    id: "VG9rZW5NYXJrZXQ6RVRIRVJFVU1fMHhDMDJhYUEzOWIyMjNGRThEMEEwZTVDNEYyN2VBRDkwODNDNzU2Q2MyX1VTRA==",
-    price: {
-      __typename: 'Amount',
-      id: 'QW1vdW50OjIwNTkuNzQ0Nzk4NjA2OTcwNl9VU0Q=',
-      value: 2059.7447986069706,
-      currency: 'USD'
+    id: 'VG9rZW46RVRIRVJFVU1fMHgyMjYwZmFjNWU1NTQyYTc3M2FhNDRmYmNmZWRmN2MxOTNiYzJjNTk5',
+    name: 'Tesouro Selic 2026',
+    chain: 'ETHEREUM',
+    address: '0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599',
+    symbol: 'TS26',
+    standard: 'ERC20',
+    market: {
+      id: 'VG9rZW5NYXJrZXQ6RVRIRVJFVU1fMHgyMjYwRkFDNUU1NTQyYTc3M0FhNDRmQkNmZURmN0MxOTNiYzJDNTk5X1VTRA==',
+      totalValueLocked: {
+        id: 'QW1vdW50OjE3NDY2Mjg2MC41MjI3NjUzN19VU0Q=',
+        value: 1.7466286052276537e8,
+        currency: 'USD',
+        __typename: 'Amount',
+      },
+      price: {
+        id: 'QW1vdW50OjM3MjgwLjgxNjgzNDI1ODg0X1VTRA==',
+        value: 2877.98,
+        currency: 'USD',
+        __typename: 'Amount',
+      },
+      pricePercentChange: {
+        id: 'QW1vdW50Oi0xLjE1NDE4MzAxMTkyODgyN19VU0Q=',
+        currency: 'USD',
+        value: -1.154183011928827,
+        __typename: 'Amount',
+      },
+      volume: {
+        id: 'QW1vdW50OjE5NzQ4NjY3LjI1Mjg5OTE3X1VTRA==',
+        value: 1.974866725289917e7,
+        currency: 'USD',
+        __typename: 'Amount',
+      },
+      __typename: 'TokenMarket',
     },
-    pricePercentChange: {
-      __typename: 'Amount',
-      id: 'QW1vdW50OjAuNTQzNjQwOTYxNTIyOTk3MV9VU0Q=',
-      currency: 'USD',
-      value: 0.5436409615229971
+    project: {
+      id: 'VG9rZW5Qcm9qZWN0OkVUSEVSRVVNXzB4MjI2MGZhYzVlNTU0MmE3NzNhYTQ0ZmJjZmVkZjdjMTkzYmMyYzU5OV9XcmFwcGVkIEJpdGNvaW4=',
+      logoUrl: 'https://i.im.ge/2023/11/27/CQmGWC.Group-12.png',
+      __typename: 'TokenProject',
+      description:
+        "This title expires on 03/01/2029. Recommended for those who want to make medium-term investments Title with daily profitability linked to the economy's interest rate (Selic rate). This means that if the Selic rate increases, your profitability increases and if the Selic rate decreases, your profitability decreases. As it does not pay half-yearly interest, it is more interesting for those who can let their money earn until the investment matures.",
     },
-    totalValueLocked: {
-      __typename: 'Amount',
-      id: 'QW1vdW50OjE3NzY0NDI0NjUuMDE4NTA1Nl9VU0Q=',
-      value: 1776442465.0185056,
-      currency: 'USD'
-    },
-    volume: {
-      __typename: 'Amount',
-      id: 'QW1vdW50OjYzMzQ3Mjk0NC40MDIzNDM4X1VTRA==',
-      value: 633472944.4023438,
-      currency: 'USD'
-    },
-    __typename: "TokenMarket"
+    __typename: 'Token',
   },
-  name: "Tesouro Prefixado 2029",
-  project: {
-    id: "VG9rZW5Qcm9qZWN0OkVUSEVSRVVNXzB4YzAyYWFhMzliMjIzZmU4ZDBhMGU1YzRmMjdlYWQ5MDgzYzc1NmNjMl9XRVRI",
-    logoUrl: "https://i.im.ge/2023/11/13/yGZAbp.b05d7e5c-33f5-4f64-8861-a1754f10f4c2-1.png",
-    __typename: "TokenProject",
-    standard: "ERC20",
-    symbol: "ETH"
-  }
-}
+  // {
+  //   __typename: 'Token',
+  //   id: 'VG9rZW46RVRIRVJFVU1fMHg4MzkwYTFkYTA3ZTM3NmVmN2FkZDRiZTg1OWJhNzRmYjgzYWEwMmQ1',
+  //   name: 'Argentina',
+  //   standard: 'ERC20',
+  //   symbol: 'ARG',
+  //   chain: 'ETHEREUM',
+  //   address: '0x8390a1da07e376ef7add4be859ba74fb83aa02d5',
+  //   market: {
+  //     id: 'VG9rZW5NYXJrZXQ6RVRIRVJFVU1fMHg4MzkwYTFEQTA3RTM3NmVmN2FEZDRCZTg1OUJBNzRGYjgzYUEwMkQ1X1VTRA==',
+  //     price: {
+  //       __typename: 'Amount',
+  //       id: 'QW1vdW50OjAuMDE3Mzk4MjkwODU3OTY4MzM2X1VTRA==',
+  //       value: 166.1,
+  //       currency: 'USD',
+  //     },
+  //     pricePercentChange: {
+  //       __typename: 'Amount',
+  //       id: 'QW1vdW50OjQxLjE0OTY0MjkxOTUzMDg3Nl9VU0Q=',
+  //       currency: 'USD',
+  //       value: 41.149642919530876,
+  //     },
+  //     totalValueLocked: {
+  //       __typename: 'Amount',
+  //       id: 'QW1vdW50OjQwMzg3MDIuNjkxNDM1NTM4X1VTRA==',
+  //       value: 4038702.691435538,
+  //       currency: 'USD',
+  //     },
+  //     volume: {
+  //       __typename: 'Amount',
+  //       id: 'QW1vdW50OjE5NDQ3OTA3LjE1ODg0NjJfVVNE',
+  //       value: 19447907.1588462,
+  //       currency: 'USD',
+  //     },
+  //     __typename: 'TokenMarket',
+  //   },
+  //   project: {
+  //     id: 'VG9rZW5Qcm9qZWN0OkVUSEVSRVVNXzB4ODM5MGExZGEwN2UzNzZlZjdhZGQ0YmU4NTliYTc0ZmI4M2FhMDJkNV9Hcm9r',
+  //     logoUrl: 'https://i.im.ge/2023/11/27/CTwFfS.argentina-icon.png',
+  //     __typename: 'TokenProject',
+  //     description:
+  //       'The "Prefixed Treasury 2026" is an investment with maturity on 01/01/2026, yielding R$1,000 per security at maturity. It is ideal for medium-term investments without semi-annual interest, and can be redeemed in advance at market value.',
+  //   },
+  // },
+  {
+    __typename: 'Token',
+    id: 'VG9rZW46RVRIRVJFVU1fMHg1MTQ5MTA3NzFhZjljYTY1NmFmODQwZGZmODNlODI2NGVjZjk4NmNh',
+    standard: 'ERC20',
+    symbol: 'TP29',
+    name: 'Tesouro Prefixado 2029',
+    slug: 'tesouro-prefixado-2029',
+    address: '0x514910771af9ca656af840dff83e8264ecf986ca',
+    chain: 'ETHEREUM',
+    market: {
+      id: 'VG9rZW5NYXJrZXQ6RVRIRVJFVU1fMHg1MTQ5MTA3NzFBRjlDYTY1NmFmODQwZGZmODNFODI2NEVjRjk4NkNBX1VTRA==',
+      price: {
+        __typename: 'Amount',
+        id: 'QW1vdW50OjE0LjY2NzE3Njg1Njk2OTI5Ml9VU0Q=',
+        value: 120.78,
+        currency: 'USD',
+      },
+      pricePercentChange: {
+        __typename: 'Amount',
+        id: 'QW1vdW50Oi0wLjgyOTgwMjYzMzU5Mjg5NjdfVVNE',
+        currency: 'USD',
+        value: -0.8298026335928967,
+      },
+      totalValueLocked: {
+        __typename: 'Amount',
+        id: 'QW1vdW50OjI5NjU5MjI1Ljc0MTIyOTcxN19VU0Q=',
+        value: 29659225.741229717,
+        currency: 'USD',
+      },
+      volume: {
+        __typename: 'Amount',
+        id: 'QW1vdW50OjE2MzUzMzE3LjA0MzEwMTMxX1VTRA==',
+        value: 16353317.04310131,
+        currency: 'USD',
+      },
+      __typename: 'TokenMarket',
+    },
+    project: {
+      id: 'VG9rZW5Qcm9qZWN0OkVUSEVSRVVNXzB4NTE0OTEwNzcxYWY5Y2E2NTZhZjg0MGRmZjgzZTgyNjRlY2Y5ODZjYV9DaGFpbmxpbms',
+      logoUrl: 'https://i.im.ge/2023/11/27/CQm4OD.Group-14.png',
+      __typename: 'TokenProject',
+      standard: 'ERC20',
+      symbol: 'ETH',
+      description:
+        'This title expires on 01/01/2029. Recommended for those who want to make medium-term investments. Prefixed title, that is, at the time of purchase, you already know exactly how much you will receive in the future (always R$1,000 per unit of title). It is more interesting for those who can let their money earn until the investment matures, as it does not pay half-yearly interest. In case of early redemption, the National Treasury guarantees its repurchase at market values.',
+    },
+  },
+  {
+    id: 'VG9rZW46RVRIRVJFVU1fMHg5NmFkZDQxNzI5M2E0OWU4MGYwMjQ3MzRlOTZjZmQ4YjM1NWJjYzE0',
+    name: 'Tesouro Selic 2029',
+    chain: 'ETHEREUM',
+    address: '0x96aDD417293a49E80f024734e96CFd8b355bCc14',
+    symbol: 'TS29',
+    standard: 'ERC20',
+    market: {
+      id: 'VG9rZW5NYXJrZXQ6RVRIRVJFVU1fMHg5NmFERDQxNzI5M2E0OUU4MGYwMjQ3MzRlOTZDRmQ4YjM1NWJDYzE0X1VTRA==',
+      totalValueLocked: {
+        id: 'QW1vdW50OjQ0NTY1NS4wNDQyMDI1MTk5M19VU0Q=',
+        value: 445655.04420251993,
+        currency: 'USD',
+        __typename: 'Amount',
+      },
+      price: {
+        id: 'QW1vdW50OjEuNjEwMDA2ODEwODEwOTUyNF9VU0Q=',
+        value: 2855.13,
+        currency: 'USD',
+        __typename: 'Amount',
+      },
+      pricePercentChange: {
+        id: 'QW1vdW50OjM2Ljk3NDczMzEwNzA2ODY5NF9VU0Q=',
+        currency: 'USD',
+        value: 36.974733107068694,
+        __typename: 'Amount',
+      },
+      volume: {
+        id: 'QW1vdW50OjY1NjE4NTguODM2ODE1NjE4X1VTRA==',
+        value: 6561858.836815618,
+        currency: 'USD',
+        __typename: 'Amount',
+      },
+      __typename: 'TokenMarket',
+    },
+    project: {
+      id: 'VG9rZW5Qcm9qZWN0OkVUSEVSRVVNXzB4OTZhZGQ0MTcyOTNhNDllODBmMDI0NzM0ZTk2Y2ZkOGIzNTViY2MxNF9MaXF1aWRMYXllcg==',
+      logoUrl: 'https://i.im.ge/2023/11/27/CQmJzY.Tesouro-Prefixado-2026.png',
+      __typename: 'TokenProject',
+      description:
+        "This title expires on 03/01/2029. Recommended for those who want to make medium-term investments Title with daily profitability linked to the economy's interest rate (Selic rate). This means that if the Selic rate increases, your profitability increases and if the Selic rate decreases, your profitability decreases. As it does not pay half-yearly interest, it is more interesting for those who can let their money earn until the investment matures.",
+    },
+    __typename: 'Token',
+  },
 ]

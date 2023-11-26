@@ -6,7 +6,6 @@ import styled from 'styled-components'
 import { ThemedText } from 'theme/components'
 import { textFadeIn } from 'theme/styles'
 
-import Resource from './Resource'
 import { NoInfoAvailable, TRUNCATE_CHARACTER_COUNT, truncateDescription, TruncateDescriptionButton } from './shared'
 
 const TokenDescriptionContainer = styled.div`
@@ -69,7 +68,7 @@ export function AboutSection({ address, chainId, description, homepageUrl, twitt
         )}
       </TokenDescriptionContainer>
       <br />
-      <ThemedText.SubHeaderSmall>
+      {/* <ThemedText.SubHeaderSmall>
         <Trans>Links</Trans>
       </ThemedText.SubHeaderSmall>
       <ResourcesContainer data-cy="resources-container">
@@ -80,7 +79,7 @@ export function AboutSection({ address, chainId, description, homepageUrl, twitt
         <Resource name="More analytics" link={`${infoLink}tokens/${address}`} />
         {homepageUrl && <Resource name="Website" link={homepageUrl} />}
         {twitterName && <Resource name="Twitter" link={`https://twitter.com/${twitterName}`} />}
-      </ResourcesContainer>
+      </ResourcesContainer> */}
     </AboutContainer>
   )
 }

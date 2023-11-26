@@ -7,8 +7,8 @@ import { useParams } from 'react-router-dom'
 import styled from 'styled-components'
 
 import { MAX_WIDTH_MEDIA_BREAKPOINT } from '../constants'
-import { HeaderRow, LoadedRow, LoadingRow } from './TokenRow'
 import { mocked_tokens } from './mockedTokens'
+import { HeaderRow, LoadedRow, LoadingRow } from './TokenRow'
 
 const GridContainer = styled.div`
   display: flex;
@@ -77,10 +77,10 @@ function LoadingTokenTable({ rowCount = PAGE_SIZE }: { rowCount?: number }) {
 
 export default function TokenTable() {
   const chainName = validateUrlChainParam(useParams<{ chainName?: string }>().chainName)
-  const {  tokenSortRank, sparklines } = useTopTokens(chainName)
-  const [loadingTokens, setLoadingTokens] = useState(false)
+  const [setLoadingTokens] = useState(false)
+  const { tokens: originalTokens, tokenSortRank, loadingTokens, sparklines } = useTopTokens(chainName)
   const tokens = mocked_tokens
-  console.log(tokens)
+  console.log(originalTokens)
   /* loading and error state */
   if (loadingTokens && !tokens) {
     return <LoadingTokenTable rowCount={PAGE_SIZE} />

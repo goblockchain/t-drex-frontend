@@ -1,14 +1,11 @@
 import AvatarGroup from 'components/avatar-group'
 import styled from 'styled-components'
 
-import ArgentinaIcon from '../../assets/images/icons/argentina-icon.png'
 import BrazilIcon from '../../assets/images/icons/brazil-icon.png'
-import LeafIcon from '../../assets/images/icons/fly-token-icon.png'
-import ParaguayIcon from '../../assets/images/icons/paraguai-icon.png'
 import ProgressGraph from '../../assets/images/icons/progress.png'
 import TP2026Icon from '../../assets/images/icons/tf-2026-icon.png'
-import TP2029Icon from '../../assets/images/icons/tp-2029-black-icon.png'
-import TS2029 from '../../assets/images/icons/ts-2029-icon.png'
+import { PoolsType } from '.'
+import { pools_mock } from './mocks'
 
 const SqueezedPoolPairs = ({ firstPair, secondPair }: { firstPair: string; secondPair: string }) => {
   const data = [
@@ -154,157 +151,48 @@ const PoolCardFooter = styled.div`
   }
 `
 
-export default function PoolCards() {
+export default function PoolCards({ activePoolType }: { activePoolType: PoolsType }) {
+  console.log(activePoolType)
+  const pools =
+    activePoolType !== 'all' ? pools_mock.filter((pool) => pool.public_title_infos.type === activePoolType) : pools_mock
+
   return (
     <PoolCardsContainer>
-      <StyledPoolCard>
-        <PoolCardHeader>
-          <div>
-            <img className="main-icon" src={TP2026Icon} alt="tesouro-prefixiado-2026" />
-            <h3>TESOURO PREFIXADO 2026</h3>
-          </div>
-          <CollateralBadge>
-            <div className="rounded-pill" />
-            <label>Collateral</label>
-          </CollateralBadge>
-        </PoolCardHeader>
-        <PoolCardBody>
-          <img className="progress-graph" src={ProgressGraph} />
-          <div className="body-infos">
+      {pools.map((pool) => (
+        <StyledPoolCard key={pool.id}>
+          <PoolCardHeader>
             <div>
-              <SqueezedPoolPairs firstPair={BrazilIcon} secondPair={TP2026Icon} />
-              <label>Pool</label>
+              <img className="main-icon" src={TP2026Icon} alt="tesouro-prefixiado-2026" />
+              <h3>{pool.public_title_infos.name}</h3>
             </div>
-            <div>
-              <span>32%</span>
-              <label>APR</label>
+            <CollateralBadge>
+              <div className="rounded-pill" />
+              <label>Collateral</label>
+            </CollateralBadge>
+          </PoolCardHeader>
+          <PoolCardBody>
+            <img className="progress-graph" src={ProgressGraph} />
+            <div className="body-infos">
+              <div>
+                <SqueezedPoolPairs firstPair={BrazilIcon} secondPair={TP2026Icon} />
+                <label>Pool</label>
+              </div>
+              <div>
+                <span>{pool.APR}%</span>
+                <label>APR</label>
+              </div>
+              <div>
+                <span>${pool.liquidity}M</span>
+                <label>Liquidity</label>
+              </div>
             </div>
-            <div>
-              <span>$1,2M</span>
-              <label>Liquidity</label>
-            </div>
-          </div>
-        </PoolCardBody>
-        <PoolCardFooter>
-          <p>
-            O &quot;Tesouro Prefixado 2026&quot;é um investimento com vencimento em 01/01/2026, rendendo R$ 1.000 por
-            título no vencimento. É ideal para investimentos de médio prazo sem juros semestrais, e pode ser resgatado
-            antecipadamente pelo valor de mercado.
-          </p>
-          <button>Ver mais</button>
-        </PoolCardFooter>
-      </StyledPoolCard>
-      <StyledPoolCard>
-        <PoolCardHeader>
-          <div>
-            <img className="main-icon" src={TP2029Icon} alt="tesouro-prefixiado-2026" />
-            <h3>TESOURO PREFIXADO 2029</h3>
-          </div>
-          <CollateralBadge>
-            <div className="rounded-pill" />
-            <label>Collateral</label>
-          </CollateralBadge>
-        </PoolCardHeader>
-        <PoolCardBody>
-          <img className="progress-graph" src={ProgressGraph} />
-          <div className="body-infos">
-            <div>
-              <SqueezedPoolPairs firstPair={ArgentinaIcon} secondPair={TP2026Icon} />
-              <label>Pool</label>
-            </div>
-            <div>
-              <span>32%</span>
-              <label>APR</label>
-            </div>
-            <div>
-              <span>$1,2M</span>
-              <label>Liquidity</label>
-            </div>
-          </div>
-        </PoolCardBody>
-        <PoolCardFooter>
-          <p>
-            O &quot;Tesouro Prefixado 2026&quot;é um investimento com vencimento em 01/01/2026, rendendo R$ 1.000 por
-            título no vencimento. É ideal para investimentos de médio prazo sem juros semestrais, e pode ser resgatado
-            antecipadamente pelo valor de mercado.
-          </p>
-          <button>Ver mais</button>
-        </PoolCardFooter>
-      </StyledPoolCard>
-      <StyledPoolCard>
-        <PoolCardHeader>
-          <div>
-            <img className="main-icon" src={TS2029} alt="tesouro-prefixiado-2026" />
-            <h3>TESOURO PREFIXADO 2029</h3>
-          </div>
-          <CollateralBadge>
-            <div className="rounded-pill" />
-            <label>Collateral</label>
-          </CollateralBadge>
-        </PoolCardHeader>
-        <PoolCardBody>
-          <img className="progress-graph" src={ProgressGraph} />
-          <div className="body-infos">
-            <div>
-              <SqueezedPoolPairs firstPair={ParaguayIcon} secondPair={TP2026Icon} />
-              <label>Pool</label>
-            </div>
-            <div>
-              <span>32%</span>
-              <label>APR</label>
-            </div>
-            <div>
-              <span>$1,2M</span>
-              <label>Liquidity</label>
-            </div>
-          </div>
-        </PoolCardBody>
-        <PoolCardFooter>
-          <p>
-            O &quot;Tesouro Prefixado 2026&quot;é um investimento com vencimento em 01/01/2026, rendendo R$ 1.000 por
-            título no vencimento. É ideal para investimentos de médio prazo sem juros semestrais, e pode ser resgatado
-            antecipadamente pelo valor de mercado.
-          </p>
-          <button>Ver mais</button>
-        </PoolCardFooter>
-      </StyledPoolCard>
-      <StyledPoolCard>
-        <PoolCardHeader>
-          <div>
-            <img className="main-icon" src={TP2026Icon} alt="tesouro-prefixiado-2026" />
-            <h3>TESOURO SELIC 2029</h3>
-          </div>
-          <CollateralBadge>
-            <div className="rounded-pill" />
-            <label>Collateral</label>
-          </CollateralBadge>
-        </PoolCardHeader>
-        <PoolCardBody>
-          <img className="progress-graph" src={ProgressGraph} />
-          <div className="body-infos">
-            <div>
-              <SqueezedPoolPairs firstPair={LeafIcon} secondPair={TP2026Icon} />
-              <label>Pool</label>
-            </div>
-            <div>
-              <span>32%</span>
-              <label>APR</label>
-            </div>
-            <div>
-              <span>$1,2M</span>
-              <label>Liquidity</label>
-            </div>
-          </div>
-        </PoolCardBody>
-        <PoolCardFooter>
-          <p>
-            O &quot;Tesouro Prefixado 2026&quot;é um investimento com vencimento em 01/01/2026, rendendo R$ 1.000 por
-            título no vencimento. É ideal para investimentos de médio prazo sem juros semestrais, e pode ser resgatado
-            antecipadamente pelo valor de mercado.
-          </p>
-          <button>Ver mais</button>
-        </PoolCardFooter>
-      </StyledPoolCard>
+          </PoolCardBody>
+          <PoolCardFooter>
+            <p>{pool.public_title_infos.description}</p>
+            <button>Ver mais</button>
+          </PoolCardFooter>
+        </StyledPoolCard>
+      ))}
     </PoolCardsContainer>
   )
 }

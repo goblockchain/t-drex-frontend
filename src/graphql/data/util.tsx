@@ -208,16 +208,18 @@ export function getTokenDetailsURL({
   chain,
   inputAddress,
   isInfoExplorePageEnabled,
+  slug,
 }: {
   address?: string | null
   chain: Chain
   inputAddress?: string | null
   isInfoExplorePageEnabled: boolean
+  slug?: string
 }) {
   const chainName = chain.toLowerCase()
   const tokenAddress = address ?? NATIVE_CHAIN_ID
   const inputAddressSuffix = inputAddress ? `?inputCurrency=${inputAddress}` : ''
-  return (isInfoExplorePageEnabled ? '/explore' : '') + `/tokens/${chainName}/${tokenAddress}${inputAddressSuffix}`
+  return (isInfoExplorePageEnabled ? '/explore' : '') + `/tokens/${chainName}/${tokenAddress}/${inputAddressSuffix}`
 }
 
 export function unwrapToken<

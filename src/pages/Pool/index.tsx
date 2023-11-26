@@ -13,7 +13,7 @@ import { isSupportedChain } from 'constants/chains'
 import { useFilterPossiblyMaliciousPositions } from 'hooks/useFilterPossiblyMaliciousPositions'
 import { useNetworkSupportsV2 } from 'hooks/useNetworkSupportsV2'
 import { useV3Positions } from 'hooks/useV3Positions'
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
 import { AlertTriangle, BookOpen, ChevronDown, ChevronsRight, Inbox, Layers } from 'react-feather'
 import { Link } from 'react-router-dom'
 import { useUserHideClosedPositions } from 'state/user/hooks'
@@ -232,10 +232,13 @@ function WrongNetworkCard() {
   )
 }
 
+export type PoolsType = 'all' | 'ltn' | 'ltf'
+
 export default function Pool() {
   const { account, chainId } = useWeb3React()
   const networkSupportsV2 = useNetworkSupportsV2()
   const toggleWalletDrawer = useToggleAccountDrawer()
+  const [activePoolType, setActivePoolType] = useState<PoolsType>('all')
 
   const theme = useTheme()
   const [userHideClosedPositions, setUserHideClosedPositions] = useUserHideClosedPositions()
@@ -374,6 +377,10 @@ export default function Pool() {
     )
   }
 
+  const handleFilterPoolByType = (poolType: PoolsType) => {
+    setActivePoolType(poolType)
+  }
+
   return (
     <Trace page={InterfacePageName.POOL_PAGE} shouldLogImpression>
       <PageWrapper>
@@ -382,11 +389,26 @@ export default function Pool() {
             <MainContainerTitleWrapper>
               <h2>Liquidity Pools</h2>
               <PoolsTypesSelect>
-                <button className="selected">View all</button>
-                <button>LTN</button>
-                <button>LTF</button>
+                <button
+                  onClick={() => handleFilterPoolByType('all')}
+                  className={`${activePoolType === 'all' && 'selected'}`}
+                >
+                  View all
+                </button>
+                <button
+                  onClick={() => handleFilterPoolByType('ltn')}
+                  className={`${activePoolType === 'ltn' && 'selected'}`}
+                >
+                  LTN
+                </button>
+                <button
+                  onClick={() => handleFilterPoolByType('ltf')}
+                  className={`${activePoolType === 'ltf' && 'selected'}`}
+                >
+                  LTF
+                </button>
               </PoolsTypesSelect>
-              <PoolCards />
+              <PoolCards activePoolType={activePoolType} />
             </MainContainerTitleWrapper>
           </AutoColumn>
         </AutoColumn>

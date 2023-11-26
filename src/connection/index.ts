@@ -7,8 +7,8 @@ import { Network } from '@web3-react/network'
 import { Actions, Connector } from '@web3-react/types'
 import GNOSIS_ICON from 'assets/images/gnosis.png'
 import UNISWAP_LOGO from 'assets/svg/logo.svg'
+import UNIWALLET_ICON from 'assets/svg/logo.svg'
 import COINBASE_ICON from 'assets/wallets/coinbase-icon.svg'
-import UNIWALLET_ICON from 'assets/wallets/uniswap-wallet-icon.png'
 import WALLET_CONNECT_ICON from 'assets/wallets/walletconnect-icon.svg'
 import { useSyncExternalStore } from 'react'
 import { isMobile, isNonIOSPhone, isNonSupportedPhone } from 'utils/userAgent'
@@ -144,7 +144,7 @@ const [web3WCV2UniwalletConnect, web3WCV2UniwalletConnectHooks] = initializeConn
   (actions) => new UniwalletWCV2Connect({ actions, onError })
 )
 export const uniwalletWCV2ConnectConnection: Connection = {
-  getName: () => 'Uniswap Wallet',
+  getName: () => 'T-DREX Wallet',
   connector: web3WCV2UniwalletConnect,
   hooks: web3WCV2UniwalletConnectHooks,
   type: ConnectionType.UNISWAP_WALLET_V2,

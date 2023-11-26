@@ -3,20 +3,21 @@ import { Trans } from '@lingui/macro'
 import { InterfacePageName } from '@uniswap/analytics-events'
 import { useWeb3React } from '@web3-react/core'
 import { Trace } from 'analytics'
-import { PortfolioLogo } from 'components/AccountDrawer/MiniPortfolio/PortfolioLogo'
 import { AboutSection } from 'components/Tokens/TokenDetails/About'
+import AddressSection from 'components/Tokens/TokenDetails/AddressSection'
+import BalanceSummary from 'components/Tokens/TokenDetails/BalanceSummary'
 import { BreadcrumbNav, BreadcrumbNavLink } from 'components/Tokens/TokenDetails/BreadcrumbNavLink'
 import ChartSection from 'components/Tokens/TokenDetails/ChartSection'
 import MobileBalanceSummaryFooter from 'components/Tokens/TokenDetails/MobileBalanceSummaryFooter'
-import ShareButton from 'components/Tokens/TokenDetails/ShareButton'
 import TokenDetailsSkeleton, {
   Hr,
   LeftPanel,
+  RightPanel,
   TokenDetailsLayout,
   TokenInfoContainer,
-  TokenNameCell,
 } from 'components/Tokens/TokenDetails/Skeleton'
 import StatsSection from 'components/Tokens/TokenDetails/StatsSection'
+import TokenSafetyMessage from 'components/TokenSafety/TokenSafetyMessage'
 import TokenSafetyModal from 'components/TokenSafety/TokenSafetyModal'
 import { NATIVE_CHAIN_ID, nativeOnChain } from 'constants/tokens'
 import { checkWarning } from 'constants/tokenSafety'
@@ -27,7 +28,8 @@ import { Chain, TokenQuery, TokenQueryData } from 'graphql/data/Token'
 import { getTokenDetailsURL, gqlToCurrency, InterfaceGqlChain, supportedChainIdFromGQLChain } from 'graphql/data/util'
 import { useOnGlobalChainSwitch } from 'hooks/useGlobalChainSwitch'
 import { UNKNOWN_TOKEN_SYMBOL, useTokenFromActiveNetwork } from 'lib/hooks/useCurrency'
-import { useCallback, useMemo, useState, useTransition } from 'react'
+import { Swap } from 'pages/Swap'
+import { useCallback, useEffect, useMemo, useState, useTransition } from 'react'
 import { ArrowLeft, ChevronRight } from 'react-feather'
 import { useNavigate } from 'react-router-dom'
 import { Field } from 'state/swap/actions'
@@ -39,7 +41,7 @@ import { addressesAreEquivalent } from 'utils/addressesAreEquivalent'
 
 import { mocked_tokens } from '../TokenTable/mockedTokens'
 import { OnChangeTimePeriod } from './ChartSection'
-import InvalidTokenDetails from './InvalidTokenDetails'
+import { TokenDescription } from './TokenDescription'
 
 const TokenSymbol = styled.span`
   text-transform: uppercase;
@@ -85,12 +87,9 @@ function useRelevantToken(
   // fetches on-chain token if query data is missing and page chain matches global chain (else fetch won't work)
   const skipOnChainFetch = Boolean(queryToken) || pageChainId !== activeChainId
   const onChainToken = useOnChainToken(address, skipOnChainFetch)
-
+  console.log(queryToken, onChainToken)
   return useMemo(
-    () => ({
-      token: queryToken ?? onChainToken,
-      didFetchFromChain: !queryToken,
-    }),
+    () => ({ token: queryToken ?? onChainToken, didFetchFromChain: !queryToken }),
     [onChainToken, queryToken]
   )
 }
@@ -103,7 +102,7 @@ type TokenDetailsProps = {
   tokenPriceQuery?: TokenPriceQuery
   onChangeTimePeriod: OnChangeTimePeriod
 }
-export default function TokenDetails({
+export default function TokenDetailsV2({
   urlAddress,
   inputTokenAddress,
   chain,
@@ -114,6 +113,7 @@ export default function TokenDetails({
   if (!urlAddress) {
     throw new Error('Invalid token details route: tokenAddress param is undefined')
   }
+
   const address = useMemo(
     () => (urlAddress === NATIVE_CHAIN_ID ? urlAddress : isAddress(urlAddress) || undefined),
     [urlAddress]
@@ -132,7 +132,7 @@ export default function TokenDetails({
   )
 
   const { token: detailedToken, didFetchFromChain } = useRelevantToken(address, pageChainId, tokenQueryData)
-  const mockedTokenInfo = mocked_tokens.find((token) => token.address.toUpperCase() === address?.toUpperCase())
+
   const tokenWarning = address ? checkWarning(address) : null
   const isBlockedToken = tokenWarning?.canProceed === false
   const navigate = useNavigate()
@@ -197,6 +197,8 @@ export default function TokenDetails({
   const [continueSwap, setContinueSwap] = useState<{ resolve: (value: boolean | PromiseLike<boolean>) => void }>()
 
   const [openTokenSafetyModal, setOpenTokenSafetyModal] = useState(false)
+  const [tokenSlug, setTokenSlug] = useState('')
+  const [detailedTokenBySlug, setDetailedTokenBySlug] = useState<any>()
 
   const onResolveSwap = useCallback(
     (value: boolean) => {
@@ -206,11 +208,34 @@ export default function TokenDetails({
     [continueSwap, setContinueSwap]
   )
 
+  useEffect(() => {
+    const tokenSlug = window.location.pathname.split('/')[3]
+    setTokenSlug(tokenSlug)
+    const detailed_mocked_token: any = mocked_tokens.find((token) => token.slug === tokenSlug)
+    for (let i = 0; i < 200; i++) {
+      const newTimestamp = Math.floor(Date.now() / 1000) + i * 1000 // Gera timestamps distintos
+      const newValue = Math.random() * (2500 - 2000) + 2000 // Gera valores aleatórios entre 2000 e 2500
+      detailed_mocked_token?.tokenPriceQuery?.token.market.priceHistory.push({
+        __typename: 'TimestampedAmount',
+        id: `NewID_${i}`,
+        timestamp: newTimestamp,
+        value: newValue,
+      })
+    }
+
+    console.log(detailed_mocked_token)
+    setDetailedTokenBySlug(detailed_mocked_token)
+  }, [])
+
   // address will never be undefined if token is defined; address is checked here to appease typechecker
-  if (detailedToken === undefined || !address) {
-    return <InvalidTokenDetails pageChainId={pageChainId} isInvalidAddress={!address} />
-  }
-  const tokenSymbolName = detailedToken && (mockedTokenInfo?.symbol ?? <Trans>Symbol not found</Trans>)
+  // if (detailedToken === undefined || !address) {
+  //   return <InvalidTokenDetails pageChainId={pageChainId} isInvalidAddress={!address} />
+  // }
+
+  // if (!address) {
+  //   return <InvalidTokenDetails pageChainId={pageChainId} isInvalidAddress={!address} />
+  // }
+  const tokenSymbolName = detailedToken && (detailedToken.symbol ?? <Trans>Symbol not found</Trans>)
 
   return (
     <Trace
@@ -219,7 +244,7 @@ export default function TokenDetails({
       shouldLogImpression
     >
       <TokenDetailsLayout>
-        {detailedToken && !isPending ? (
+        {detailedTokenBySlug ? (
           <LeftPanel>
             {isInfoTDPEnabled ? (
               <BreadcrumbNav isInfoTDPEnabled>
@@ -227,11 +252,11 @@ export default function TokenDetails({
                   <Trans>Explore</Trans> <ChevronRight size={14} /> <Trans>Tokens</Trans> <ChevronRight size={14} />
                 </BreadcrumbNavLink>{' '}
                 {tokenSymbolName}{' '}
-                {!detailedToken.isNative && (
+                {!detailedTokenBySlug.isNative && (
                   <>
                     (
                     <CopyContractAddress
-                      address={address}
+                      address={detailedTokenBySlug.address}
                       showTruncatedOnly
                       truncatedAddress={shortenAddress(address)}
                     />
@@ -247,66 +272,77 @@ export default function TokenDetails({
               </BreadcrumbNav>
             )}
             <TokenInfoContainer data-testid="token-info-container">
-              <TokenNameCell>
-                <PortfolioLogo
-                  currencies={[detailedToken]}
-                  avatarUrl={mockedTokenInfo?.project.logoUrl}
-                  chainId={detailedToken.chainId}
-                  size="32px"
-                />
+              {/* <TokenNameCell>
+                <PortfolioLogo currencies={[detailed_mocked_token]} chainId={detailedToken.chainId} size="32px" />
                 <TokenTitle>
-                  {mockedTokenInfo?.name ?? <Trans>Name not found</Trans>}
+                  {detailedToken.name ?? <Trans>Name not found</Trans>}
                   <TokenSymbol>{tokenSymbolName}</TokenSymbol>
                 </TokenTitle>
               </TokenNameCell>
               <TokenActions>
-                <ShareButton currency={detailedToken} />
-              </TokenActions>
+                <ShareButton currency={detailed_mocked_token} />
+              </TokenActions> */}
             </TokenInfoContainer>
-            <ChartSection tokenPriceQuery={tokenPriceQuery} onChangeTimePeriod={onChangeTimePeriod} />
+            <ChartSection
+              tokenPriceQuery={detailedTokenBySlug?.tokenPriceQuery}
+              onChangeTimePeriod={onChangeTimePeriod}
+            />
 
-            <StatsSection chainId={pageChainId} address={address} tokenQueryData={tokenQueryData} />
+            <StatsSection chainId={pageChainId} address={detailedTokenBySlug.address} tokenQueryData={tokenQueryData} />
             <Hr />
-            <AboutSection address={address} chainId={pageChainId} description={mockedTokenInfo?.project?.description} />
-            {/* {!detailedToken.isNative && <AddressSection address={address} />} */}
+            <AboutSection
+              address={detailedTokenBySlug.address}
+              chainId={pageChainId}
+              description={tokenQueryData?.project?.description}
+              homepageUrl={tokenQueryData?.project?.homepageUrl}
+              twitterName={tokenQueryData?.project?.twitterName}
+            />
+            {!detailedTokenBySlug.isNative && <AddressSection address={detailedTokenBySlug.address} />}
           </LeftPanel>
         ) : (
           <TokenDetailsSkeleton />
         )}
 
-        {/* <RightPanel isInfoTDPEnabled={isInfoTDPEnabled} onClick={() => isBlockedToken && setOpenTokenSafetyModal(true)}>
-          <div style={{ pointerEvents: isBlockedToken ? 'none' : 'auto' }}>
-            <Swap
-              chainId={pageChainId}
-              initialInputCurrencyId={inputTokenAddress}
-              initialOutputCurrencyId={address === NATIVE_CHAIN_ID ? 'ETH' : address}
-              onCurrencyChange={handleCurrencyChange}
-              disableTokenInputs={pageChainId !== connectedChainId}
-            />
-          </div>
-          {tokenWarning && <TokenSafetyMessage tokenAddress={address} warning={tokenWarning} />}
-          {!isInfoTDPEnabled && detailedToken && <BalanceSummary token={detailedToken} />}
-          {isInfoTDPEnabled && (
-            <TokenDescription
-              tokenAddress={address}
-              chainId={pageChainId}
-              isNative={detailedToken?.isNative}
-              characterCount={200}
-            />
-          )}
-        </RightPanel> */}
-        {!isInfoTDPEnabled && detailedToken && <MobileBalanceSummaryFooter token={detailedToken} />}
+        {detailedTokenBySlug?.address && (
+          <>
+            <RightPanel
+              isInfoTDPEnabled={isInfoTDPEnabled}
+              onClick={() => isBlockedToken && setOpenTokenSafetyModal(true)}
+            >
+              <div style={{ pointerEvents: isBlockedToken ? 'none' : 'auto' }}>
+                <Swap
+                  chainId={pageChainId}
+                  initialInputCurrencyId={inputTokenAddress}
+                  initialOutputCurrencyId={address === NATIVE_CHAIN_ID ? 'ETH' : address}
+                  onCurrencyChange={handleCurrencyChange}
+                  disableTokenInputs={pageChainId !== connectedChainId}
+                />
+              </div>
+              {tokenWarning && <TokenSafetyMessage tokenAddress={detailedTokenBySlug.address} warning={tokenWarning} />}
+              {!isInfoTDPEnabled && detailedToken && <BalanceSummary token={detailedToken} />}
+              {isInfoTDPEnabled && (
+                <TokenDescription
+                  tokenAddress={detailedTokenBySlug.address}
+                  chainId={pageChainId}
+                  isNative={detailedToken?.isNative}
+                  characterCount={200}
+                />
+              )}
+            </RightPanel>
+            {!isInfoTDPEnabled && detailedToken && <MobileBalanceSummaryFooter token={detailedToken} />}
 
-        <TokenSafetyModal
-          isOpen={openTokenSafetyModal || !!continueSwap}
-          tokenAddress={address}
-          onContinue={() => onResolveSwap(true)}
-          onBlocked={() => {
-            setOpenTokenSafetyModal(false)
-          }}
-          onCancel={() => onResolveSwap(false)}
-          showCancel={true}
-        />
+            <TokenSafetyModal
+              isOpen={openTokenSafetyModal || !!continueSwap}
+              tokenAddress={detailedTokenBySlug.address}
+              onContinue={() => onResolveSwap(true)}
+              onBlocked={() => {
+                setOpenTokenSafetyModal(false)
+              }}
+              onCancel={() => onResolveSwap(false)}
+              showCancel={true}
+            />
+          </>
+        )}
       </TokenDetailsLayout>
     </Trace>
   )
