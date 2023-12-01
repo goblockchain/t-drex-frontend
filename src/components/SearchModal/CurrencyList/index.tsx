@@ -23,6 +23,7 @@ import Row, { RowFixed } from '../../Row'
 import { MouseoverTooltip } from '../../Tooltip'
 import { LoadingRows, MenuItem } from '../styled'
 import { scrollbarStyle } from './index.css'
+import { tdrexAssetsData } from './tdrexCurrencyList'
 
 function currencyKey(currency: Currency): string {
   return currency.isToken ? currency.address : 'ETHER'
@@ -133,6 +134,8 @@ export function CurrencyRow({
   const blockedTokenOpacity = '0.6'
   const { data } = useCachedPortfolioBalancesQuery({ account })
   const portfolioBalanceUsd = data?.portfolios?.[0].tokensTotalDenominatedValue?.value
+
+  console.log('cachedPortfolioBalancesQuery', data)
 
   // only show add or remove buttons if not on selected list
   return (
@@ -252,15 +255,16 @@ export default function CurrencyList({
 
   const Row = useCallback(
     function TokenRow({ data, index, style }: TokenRowProps) {
-      const row: Currency = data[index]
+      const row: Currency = tdrexAssetsData[index]
 
+      // console.log('row', data)
       const currency = row
 
-      const balance =
-        tryParseCurrencyAmount(
-          String(balances[currency.isNative ? 'ETH' : currency.address?.toLowerCase()]?.balance ?? 0),
-          currency
-        ) ?? CurrencyAmount.fromRawAmount(currency, 0)
+      // TODO -> TDREX PARSE BALANCE
+      const balance = tryParseCurrencyAmount(
+        String(balances[currency?.isNative ? 'ETH' : currency?.address?.toLowerCase()]?.balance ?? 0),
+        currency
+      )
 
       const isSelected = Boolean(currency && selectedCurrency && selectedCurrency.equals(currency))
       const otherSelected = Boolean(currency && otherCurrency && otherCurrency.equals(currency))
@@ -279,7 +283,13 @@ export default function CurrencyList({
             onSelect={handleSelect}
             otherSelected={otherSelected}
             showCurrencyAmount={showCurrencyAmount}
-            eventProperties={formatAnalyticsEventProperties(token, index, data, searchQuery, isAddressSearch)}
+            eventProperties={formatAnalyticsEventProperties(
+              token,
+              index,
+              tdrexAssetsData,
+              searchQuery,
+              isAddressSearch
+            )}
             balance={balance}
           />
         )

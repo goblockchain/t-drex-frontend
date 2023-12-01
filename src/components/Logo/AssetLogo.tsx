@@ -3,6 +3,8 @@ import useTokenLogoSource from 'hooks/useAssetLogoSource'
 import React, { useState } from 'react'
 import styled from 'styled-components'
 
+import { getTitleIcon, TDREX_TITLES_ENUM } from './TdrexTitles'
+
 export const MissingImageLogo = styled.div<{ size?: string }>`
   --size: ${({ size }) => size};
   border-radius: 100px;
@@ -61,7 +63,8 @@ export default function AssetLogo({
   size = '24px',
   style,
 }: AssetLogoProps) {
-  const [src, nextSrc] = useTokenLogoSource(address, chainId, isNative, backupImg)
+  const [_, nextSrc] = useTokenLogoSource(address, chainId, isNative, backupImg)
+  const src = getTitleIcon(symbol as TDREX_TITLES_ENUM)
   const [imgLoaded, setImgLoaded] = useState(() => {
     const img = document.createElement('img')
     img.src = src ?? ''

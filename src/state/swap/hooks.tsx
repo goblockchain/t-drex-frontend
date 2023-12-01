@@ -1,6 +1,7 @@
 import { Trans } from '@lingui/macro'
 import { ChainId, Currency, CurrencyAmount, Percent, TradeType } from '@uniswap/sdk-core'
 import { useWeb3React } from '@web3-react/core'
+import { tdrexAssetsData } from 'components/SearchModal/CurrencyList/tdrexCurrencyList'
 import { useConnectionReady } from 'connection/eagerlyConnect'
 import { useFotAdjustmentsEnabled } from 'featureFlags/flags/fotAdjustments'
 import useAutoSlippageTolerance from 'hooks/useAutoSlippageTolerance'
@@ -109,7 +110,10 @@ export function useDerivedSwapInfo(state: SwapState, chainId: ChainId | undefine
     recipient,
   } = state
 
-  const inputCurrency = useCurrency(inputCurrencyId, chainId)
+  const tdrexCurrencies = tdrexAssetsData
+
+  // const inputCurrency = useCurrency(inputCurrencyId, chainId)
+  const inputCurrency = tdrexCurrencies.find((tdrex) => tdrex.chainId === inputCurrencyId)
   const outputCurrency = useCurrency(outputCurrencyId, chainId)
 
   const fotAdjustmentsEnabled = useFotAdjustmentsEnabled()
@@ -187,7 +191,7 @@ export function useDerivedSwapInfo(state: SwapState, chainId: ChainId | undefine
     }
 
     if (!currencies[Field.INPUT] || !currencies[Field.OUTPUT]) {
-      inputError = inputError ?? <Trans>Select a token</Trans>
+      inputError = inputError ?? <Trans>Select a tokene</Trans>
     }
 
     if (!parsedAmount) {
