@@ -20,6 +20,7 @@ import { AutoColumn } from 'components/Column'
 import SwapCurrencyInputPanel from 'components/CurrencyInputPanel/SwapCurrencyInputPanel'
 import { NetworkAlert } from 'components/NetworkAlert/NetworkAlert'
 import { AutoRow } from 'components/Row'
+import { tdrexAssetsData, tdrexCBDCsData } from 'components/SearchModal/CurrencyList/tdrexCurrencyList'
 import confirmPriceImpactWithoutFee from 'components/swap/confirmPriceImpactWithoutFee'
 import ConfirmSwapModal from 'components/swap/ConfirmSwapModal'
 import PriceImpactModal from 'components/swap/PriceImpactModal'
@@ -34,7 +35,7 @@ import { getChainInfo } from 'constants/chainInfo'
 import { asSupportedChain, isSupportedChain } from 'constants/chains'
 import { getSwapCurrencyId, TOKEN_SHORTHANDS } from 'constants/tokens'
 import { useUniswapXDefaultEnabled } from 'featureFlags/flags/uniswapXDefault'
-import { useCurrency, useDefaultActiveTokens } from 'hooks/Tokens'
+import { useCurrency } from 'hooks/Tokens'
 import { useIsSwapUnsupported } from 'hooks/useIsSwapUnsupported'
 import { useMaxAmountIn } from 'hooks/useMaxAmountIn'
 import usePermit2Allowance, { AllowanceState } from 'hooks/usePermit2Allowance'
@@ -192,6 +193,8 @@ export function Swap({
   const { account, chainId: connectedChainId, connector } = useWeb3React()
   const trace = useTrace()
 
+  // TODO - console.log('connectedChainId', connectedChainId, 'chainId', chainId, 'account', account, 'connector', connector)
+
   // token warning stuff
   const prefilledInputCurrency = useCurrency(initialInputCurrencyId, chainId)
   const prefilledOutputCurrency = useCurrency(initialOutputCurrencyId, chainId)
@@ -216,7 +219,10 @@ export function Swap({
   }, [])
 
   // dismiss warning if all imported tokens are in active lists
-  const defaultTokens = useDefaultActiveTokens(chainId)
+  // const defaultTokens = useDefaultActiveTokens(chainId)
+  // const defaultTokens = [...tdrexAssetsData, ...tdrexCBDCsData]
+  const defaultTokens = useMemo(() => tdrexAssetsData.concat(tdrexCBDCsData), [])
+
   const importTokensNotInDefault = useMemo(
     () =>
       urlLoadedTokens &&
@@ -250,6 +256,7 @@ export function Swap({
     [initialInputCurrencyId, initialOutputCurrencyId]
   )
   const [state, dispatch] = useReducer(swapReducer, { ...initialSwapState, ...prefilledState })
+
   const { typedValue, recipient, independentField } = state
 
   const previousConnectedChainId = usePrevious(connectedChainId)
@@ -545,7 +552,9 @@ export function Swap({
   }, [trade])
 
   const handleInputSelect = useCallback(
+    // TODO -> Handle currency change
     (inputCurrency: Currency) => {
+      console.log('inputCurrency', inputCurrency)
       onCurrencySelection(Field.INPUT, inputCurrency)
       onCurrencyChange?.({
         [Field.INPUT]: {
@@ -607,6 +616,8 @@ export function Swap({
   const showOptInSmall = !useScreenSize().navSearchInputVisible
   const isDark = useIsDarkMode()
   const isUniswapXDefaultEnabled = useUniswapXDefaultEnabled()
+
+  console.log('currencies', currencies)
 
   const swapElement = (
     <SwapWrapper isDark={isDark} className={className} id="swap-page">

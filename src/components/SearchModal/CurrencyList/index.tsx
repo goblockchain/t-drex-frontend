@@ -23,7 +23,7 @@ import Row, { RowFixed } from '../../Row'
 import { MouseoverTooltip } from '../../Tooltip'
 import { LoadingRows, MenuItem } from '../styled'
 import { scrollbarStyle } from './index.css'
-import { tdrexAssetsData } from './tdrexCurrencyList'
+import { tdrexAssetsData, tdrexCBDCsData } from './tdrexCurrencyList'
 
 function currencyKey(currency: Currency): string {
   return currency.isToken ? currency.address : 'ETHER'
@@ -134,8 +134,6 @@ export function CurrencyRow({
   const blockedTokenOpacity = '0.6'
   const { data } = useCachedPortfolioBalancesQuery({ account })
   const portfolioBalanceUsd = data?.portfolios?.[0].tokensTotalDenominatedValue?.value
-
-  console.log('cachedPortfolioBalancesQuery', data)
 
   // only show add or remove buttons if not on selected list
   return (
@@ -255,7 +253,7 @@ export default function CurrencyList({
 
   const Row = useCallback(
     function TokenRow({ data, index, style }: TokenRowProps) {
-      const row: Currency = tdrexAssetsData[index]
+      const row: Currency = [...tdrexAssetsData, ...tdrexCBDCsData][index]
 
       // console.log('row', data)
       const currency = row

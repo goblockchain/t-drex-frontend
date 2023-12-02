@@ -1,9 +1,8 @@
 import { Trans } from '@lingui/macro'
 import { ChainId, Currency, CurrencyAmount, Percent, TradeType } from '@uniswap/sdk-core'
 import { useWeb3React } from '@web3-react/core'
-import { tdrexAssetsData } from 'components/SearchModal/CurrencyList/tdrexCurrencyList'
+import { tdrexAssetsData, tdrexCBDCsData } from 'components/SearchModal/CurrencyList/tdrexCurrencyList'
 import { useConnectionReady } from 'connection/eagerlyConnect'
-import { useFotAdjustmentsEnabled } from 'featureFlags/flags/fotAdjustments'
 import useAutoSlippageTolerance from 'hooks/useAutoSlippageTolerance'
 import { useDebouncedTrade } from 'hooks/useDebouncedTrade'
 import { useSwapTaxes } from 'hooks/useSwapTaxes'
@@ -18,7 +17,6 @@ import { isClassicTrade, isSubmittableTrade, isUniswapXTrade } from 'state/routi
 import { useUserSlippageToleranceWithDefault } from 'state/user/hooks'
 
 import { TOKEN_SHORTHANDS } from '../../constants/tokens'
-import { useCurrency } from '../../hooks/Tokens'
 import useENS from '../../hooks/useENS'
 import useParsedQueryString from '../../hooks/useParsedQueryString'
 import { isAddress } from '../../utils'
@@ -34,10 +32,11 @@ export function useSwapActionHandlers(dispatch: React.Dispatch<AnyAction>): {
 } {
   const onCurrencySelection = useCallback(
     (field: Field, currency: Currency) => {
+      console.log('currency onCurrencySelection', currency)
       dispatch(
         selectCurrency({
           field,
-          currencyId: currency.isToken ? currency.address : currency.isNative ? 'ETH' : '',
+          currencyId: currency.isToken ? currency.address : currency.isNative ? 'TS26' : '',
         })
       )
     },
@@ -110,16 +109,18 @@ export function useDerivedSwapInfo(state: SwapState, chainId: ChainId | undefine
     recipient,
   } = state
 
-  const tdrexCurrencies = tdrexAssetsData
+  const tdrexTitleCurrencies = tdrexAssetsData
+  const tdrexCdbcsCurrencies = tdrexCBDCsData
 
   // const inputCurrency = useCurrency(inputCurrencyId, chainId)
-  const inputCurrency = tdrexCurrencies.find((tdrex) => tdrex.chainId === inputCurrencyId)
-  const outputCurrency = useCurrency(outputCurrencyId, chainId)
+  const inputCurrency = tdrexTitleCurrencies.find((tdrex) => tdrex.chainId === inputCurrencyId)
+  // const outputCurrency = useCurrency(outputCurrencyId, chainId)
+  const outputCurrency = tdrexCdbcsCurrencies.find((tdrex) => tdrex.chainId === outputCurrencyId)
 
-  const fotAdjustmentsEnabled = useFotAdjustmentsEnabled()
+  // const fotAdjustmentsEnabled = useFotAdjustmentsEnabled()
   const { inputTax, outputTax } = useSwapTaxes(
-    inputCurrency?.isToken && fotAdjustmentsEnabled ? inputCurrency.address : undefined,
-    outputCurrency?.isToken && fotAdjustmentsEnabled ? outputCurrency.address : undefined
+    inputCurrency?.isToken ? inputCurrency.address : undefined,
+    outputCurrency?.isToken ? outputCurrency.address : undefined
   )
 
   const recipientLookup = useENS(recipient ?? undefined)
@@ -276,6 +277,7 @@ function validatedRecipient(recipient: any): string | null {
 }
 
 export function queryParametersToSwapState(parsedQs: ParsedQs): SwapState {
+  console.log('parsedQs', parsedQs)
   let inputCurrency = parseCurrencyFromURLParameter(parsedQs.inputCurrency)
   let outputCurrency = parseCurrencyFromURLParameter(parsedQs.outputCurrency)
   const typedValue = parseTokenAmountURLParameter(parsedQs.exactAmount)
@@ -283,7 +285,7 @@ export function queryParametersToSwapState(parsedQs: ParsedQs): SwapState {
 
   if (inputCurrency === '' && outputCurrency === '' && typedValue === '' && independentField === Field.INPUT) {
     // Defaults to having the native currency selected
-    inputCurrency = 'ETH'
+    inputCurrency = 'TP26'
   } else if (inputCurrency === outputCurrency) {
     // clear output if identical
     outputCurrency = ''

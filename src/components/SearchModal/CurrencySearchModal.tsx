@@ -41,8 +41,6 @@ export default memo(function CurrencySearchModal({
   const lastOpen = useLast(isOpen)
   const userAddedTokens = useUserAddedTokens()
 
-  console.log('userAddedTokens', userAddedTokens)
-
   useEffect(() => {
     if (isOpen && !lastOpen) {
       setModalView(CurrencyModalView.search)

@@ -296,6 +296,7 @@ const SwapCurrencyInputPanel = forwardRef<HTMLInputElement, SwapCurrencyInputPan
 
     // reset tooltip state when currency changes
     useEffect(() => setTooltipVisible(false), [currency])
+    console.log('currency', currency)
 
     return (
       <InputPanel id={id} hideInput={hideInput} {...rest}>

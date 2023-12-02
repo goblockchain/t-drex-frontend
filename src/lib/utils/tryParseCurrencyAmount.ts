@@ -13,7 +13,6 @@ export default function tryParseCurrencyAmount<T extends Currency>(
   if (!value || !currency) {
     return undefined
   }
-  console.log('currency', currency)
   try {
     const typedValueParsed = parseUnits(value, currency?.decimals || 18).toString()
     if (typedValueParsed !== '0') {
