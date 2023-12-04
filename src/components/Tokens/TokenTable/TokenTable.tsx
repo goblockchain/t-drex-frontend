@@ -80,8 +80,9 @@ export default function TokenTable() {
   const [setLoadingTokens] = useState(false)
   const { tokens: originalTokens, tokenSortRank, loadingTokens, sparklines } = useTopTokens(chainName)
   const tokens = mocked_tokens
-  console.log(originalTokens)
+
   /* loading and error state */
+
   if (loadingTokens && !tokens) {
     return <LoadingTokenTable rowCount={PAGE_SIZE} />
   } else if (!tokens) {

@@ -387,7 +387,7 @@ export default function Pool() {
         <AutoColumn gap="lg" justify="center">
           <AutoColumn gap="lg" style={{ width: '100%' }}>
             <MainContainerTitleWrapper>
-              <h2>Liquidity Pools</h2>
+              <h2>Pools de liquidez</h2>
               <PoolsTypesSelect>
                 <button
                   onClick={() => handleFilterPoolByType('all')}

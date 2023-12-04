@@ -9,7 +9,6 @@ import { useIsNftPage } from 'hooks/useIsNftPage'
 import { useIsPoolsPage } from 'hooks/useIsPoolsPage'
 import { Box } from 'nft/components/Box'
 import { Row } from 'nft/components/Flex'
-import { UniIcon } from 'nft/components/icons'
 import { useProfilePageState } from 'nft/hooks'
 import { ProfilePageStateType } from 'nft/types'
 import { ReactNode, useCallback } from 'react'
@@ -20,10 +19,8 @@ import { useIsNavSearchInputVisible } from '../../nft/hooks/useIsNavSearchInputV
 import { Bag } from './Bag'
 import Blur from './Blur'
 import { ChainSelector } from './ChainSelector'
-import { MenuDropdown } from './MenuDropdown'
 import { SearchBar } from './SearchBar'
 import * as styles from './style.css'
-
 
 const Nav = styled.nav`
   padding: ${({ theme }) => `${theme.navVerticalPad}px 12px`};
@@ -121,7 +118,7 @@ const Navbar = ({ blur }: { blur: boolean }) => {
         <Box display="flex" height="full" flexWrap="nowrap">
           <Box className={styles.leftSideContainer}>
             <Box className={styles.logoContainer}>
-              <img onClick={handleDinoIconClick} src='/images/logos/main_logo.png' width={48} />
+              <img src="/images/logos/main_logo.png" width={48} />
             </Box>
             {!isNftPage && (
               <Box display={{ sm: 'flex', lg: 'none' }}>

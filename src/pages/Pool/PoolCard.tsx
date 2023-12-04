@@ -1,9 +1,7 @@
 import AvatarGroup from 'components/avatar-group'
 import styled from 'styled-components'
 
-import BrazilIcon from '../../assets/images/icons/brazil-icon.png'
 import ProgressGraph from '../../assets/images/icons/progress.png'
-import TP2026Icon from '../../assets/images/icons/tf-2026-icon.png'
 import { PoolsType } from '.'
 import { pools_mock } from './mocks'
 
@@ -22,6 +20,7 @@ const SqueezedPoolPairs = ({ firstPair, secondPair }: { firstPair: string; secon
 
 const PoolCardsContainer = styled.div`
   display: grid;
+  justify-content: center;
   grid-template-columns: 1fr;
   gap: 20px;
 
@@ -76,10 +75,10 @@ const PoolCardHeader = styled.header`
   > div {
     display: flex;
     align-items: center;
-
+    column-gap: 10px;
     .main-icon {
-      width: 43px;
-      height: 35px;
+      width: 32px;
+      height: 32px;
     }
 
     h3 {
@@ -133,12 +132,20 @@ const PoolCardFooter = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  max-height: 360px;
 
   p {
     font-size: 14px;
     font-weight: 400;
     color: #667085;
     text-align: justify;
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis; /* Adiciona reticências para indicar texto cortado */
+    -webkit-line-clamp: 4; /* Limita o número de linhas exibidas (ajuste conforme necessário) */
+    -webkit-box-orient: vertical;
+    line-height: 1.2em; /* Ajuste conforme a altura do texto */
+    height: 6em; /* Limita a altura a aproximadamente 3 linhas */
   }
 
   button {
@@ -152,7 +159,6 @@ const PoolCardFooter = styled.div`
 `
 
 export default function PoolCards({ activePoolType }: { activePoolType: PoolsType }) {
-  console.log(activePoolType)
   const pools =
     activePoolType !== 'all' ? pools_mock.filter((pool) => pool.public_title_infos.type === activePoolType) : pools_mock
 
@@ -162,7 +168,7 @@ export default function PoolCards({ activePoolType }: { activePoolType: PoolsTyp
         <StyledPoolCard key={pool.id}>
           <PoolCardHeader>
             <div>
-              <img className="main-icon" src={TP2026Icon} alt="tesouro-prefixiado-2026" />
+              <img className="main-icon" src={pool.public_title_infos.icon} alt="tesouro-prefixiado-2026" />
               <h3>{pool.public_title_infos.name}</h3>
             </div>
             <CollateralBadge>
@@ -174,7 +180,7 @@ export default function PoolCards({ activePoolType }: { activePoolType: PoolsTyp
             <img className="progress-graph" src={ProgressGraph} />
             <div className="body-infos">
               <div>
-                <SqueezedPoolPairs firstPair={BrazilIcon} secondPair={TP2026Icon} />
+                <SqueezedPoolPairs firstPair={pool.cbdc_infos.icon} secondPair={pool.public_title_infos.icon} />
                 <label>Pool</label>
               </div>
               <div>
