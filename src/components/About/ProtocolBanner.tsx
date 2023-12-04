@@ -89,16 +89,12 @@ const ProtocolBanner = () => {
   return (
     <Banner isDarkMode={isDarkMode}>
       <TextContainer>
-        <HeaderText>Powered by the Uniswap Protocol</HeaderText>
+        <HeaderText>Powered by T-DREX Protocol</HeaderText>
         <DescriptionText>
-          The leading decentralized crypto trading protocol, governed by a global community.
+          O principal protocolo descentralizado de negociação de criptografia, governado por uma comunidade global..
         </DescriptionText>
       </TextContainer>
-      <BannerButtonContainer>
-        <BannerButton width="200px" as="a" href="https://uniswap.org" rel="noopener noreferrer" target="_blank">
-          Learn more
-        </BannerButton>
-      </BannerButtonContainer>
+      <BannerButtonContainer></BannerButtonContainer>
     </Banner>
   )
 }

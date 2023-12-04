@@ -20,7 +20,6 @@ const SqueezedPoolPairs = ({ firstPair, secondPair }: { firstPair: string; secon
 
 const PoolCardsContainer = styled.div`
   display: grid;
-  justify-content: center;
   grid-template-columns: 1fr;
   gap: 20px;
 
@@ -29,7 +28,7 @@ const PoolCardsContainer = styled.div`
   }
 
   @media (min-width: 1200px) {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
 `
 
@@ -189,13 +188,12 @@ export default function PoolCards({ activePoolType }: { activePoolType: PoolsTyp
               </div>
               <div>
                 <span>${pool.liquidity}M</span>
-                <label>Liquidity</label>
+                <label>Liquidez</label>
               </div>
             </div>
           </PoolCardBody>
           <PoolCardFooter>
             <p>{pool.public_title_infos.description}</p>
-            <button>Ver mais</button>
           </PoolCardFooter>
         </StyledPoolCard>
       ))}

@@ -108,7 +108,7 @@ export default function StatsSection(props: StatsSectionProps) {
     return (
       <StatsWrapper data-testid="token-details-stats">
         <Header>
-          <Trans>Stats</Trans>
+          <Trans>Estatísticas</Trans>
         </Header>
         <TokenStatsSection>
           {isInfoTDPEnabled ? (
@@ -143,8 +143,7 @@ export default function StatsSection(props: StatsSectionProps) {
                   value={volume24H}
                   description={
                     <Trans>
-                      1 day volume is the amount of the asset that has been traded on T-DREX during the past 24
-                      hours.
+                      1 day volume is the amount of the asset that has been traded on T-DREX during the past 24 hours.
                     </Trans>
                   }
                   title={<Trans>1 day volume</Trans>}

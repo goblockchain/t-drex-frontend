@@ -393,7 +393,7 @@ export default function Pool() {
                   onClick={() => handleFilterPoolByType('all')}
                   className={`${activePoolType === 'all' && 'selected'}`}
                 >
-                  View all
+                  Ver todos
                 </button>
                 <button
                   onClick={() => handleFilterPoolByType('ltn')}
