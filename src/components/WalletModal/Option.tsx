@@ -4,7 +4,7 @@ import { TraceEvent } from 'analytics'
 import { useToggleAccountDrawer } from 'components/AccountDrawer'
 import Loader from 'components/Icons/LoadingSpinner'
 import { ActivationStatus, useActivationState } from 'connection/activate'
-import { Connection } from 'connection/types'
+import { Connection, ConnectionType } from 'connection/types'
 import styled from 'styled-components'
 import { useIsDarkMode } from 'theme/components/ThemeToggle'
 import { flexColumnNoWrap, flexRowNoWrap } from 'theme/styles'
@@ -87,7 +87,7 @@ export default function Option({ connection }: OptionProps) {
   const isSomeOptionPending = activationState.status === ActivationStatus.PENDING
   const isCurrentOptionPending = isSomeOptionPending && activationState.connection.type === connection.type
   const isDarkMode = useIsDarkMode()
-
+  console.log(connection)
   return (
     <Wrapper disabled={isSomeOptionPending}>
       <TraceEvent
@@ -97,7 +97,7 @@ export default function Option({ connection }: OptionProps) {
         element={InterfaceElementName.WALLET_TYPE_OPTION}
       >
         <OptionCardClickable
-          disabled={isSomeOptionPending}
+          disabled={connection.type === ConnectionType.UNISWAP_WALLET_V2}
           onClick={activate}
           selected={isCurrentOptionPending}
           data-testid={`wallet-option-${connection.type}`}

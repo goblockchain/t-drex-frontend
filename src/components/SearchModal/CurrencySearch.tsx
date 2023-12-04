@@ -27,7 +27,6 @@ import { useDefaultActiveTokens, useIsUserAddedToken, useSearchInactiveTokenList
 import { isAddress } from '../../utils'
 import Column from '../Column'
 import Row, { RowBetween } from '../Row'
-import CommonBases from './CommonBases'
 import { CurrencyRow, formatAnalyticsEventProperties } from './CurrencyList'
 import CurrencyList from './CurrencyList'
 import { PaddedColumn, SearchInput, Separator } from './styled'
@@ -79,6 +78,7 @@ export function CurrencySearch({
   const searchTokenIsAdded = useIsUserAddedToken(searchToken)
 
   const defaultTokens = useDefaultActiveTokens(chainId)
+  console.log('defaultTokens', defaultTokens)
 
   const { data, loading: balancesAreLoading } = useCachedPortfolioBalancesQuery({ account })
   const balances: TokenBalances = useMemo(() => {
@@ -278,7 +278,7 @@ export function CurrencySearch({
               onKeyDown={handleEnter}
             />
           </Row>
-          {showCommonBases && (
+          {/* {showCommonBases && (
             <CommonBases
               chainId={chainId}
               onSelect={handleCurrencySelect}
@@ -286,7 +286,7 @@ export function CurrencySearch({
               searchQuery={searchQuery}
               isAddressSearch={isAddressSearch}
             />
-          )}
+          )} */}
         </PaddedColumn>
         <Separator />
         {searchToken && !searchTokenIsAdded ? (

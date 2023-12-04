@@ -2,11 +2,11 @@ import { Trans } from '@lingui/macro'
 import { InterfaceEventName } from '@uniswap/analytics-events'
 import { ParentSize } from '@visx/responsive'
 import { sendAnalyticsEvent } from 'analytics'
+import { CircleLogoImage } from 'components/AccountDrawer/MiniPortfolio/PortfolioLogo'
 import SparklineChart from 'components/Charts/SparklineChart'
 import { ArrowChangeDown } from 'components/Icons/ArrowChangeDown'
 import { ArrowChangeUp } from 'components/Icons/ArrowChangeUp'
 import { Info } from 'components/Icons/Info'
-import QueryTokenLogo from 'components/Logo/QueryTokenLogo'
 import { MouseoverTooltip } from 'components/Tooltip'
 import { useInfoExplorePageEnabled } from 'featureFlags/flags/infoExplore'
 import { SparklineMap, TopToken } from 'graphql/data/TopTokens'
@@ -36,7 +36,6 @@ import {
   useSetSortMethod,
 } from '../state'
 import { DeltaArrow, DeltaText } from '../TokenDetails/Delta'
-import { CircleLogoImage } from 'components/AccountDrawer/MiniPortfolio/PortfolioLogo'
 
 const Cell = styled.div`
   display: flex;
@@ -302,7 +301,7 @@ export const HEADER_DESCRIPTIONS: Record<TokenSortMethod, ReactNode | undefined>
   [TokenSortMethod.PERCENT_CHANGE]: undefined,
   [TokenSortMethod.TOTAL_VALUE_LOCKED]: (
     <Trans>
-      Total value locked (TVL) is the aggregate amount of the asset available across all Uniswap v3 liquidity pools.
+      Total value locked (TVL) is the aggregate amount of the asset available across all T-DREX liquidity pools.
     </Trans>
   ),
   [TokenSortMethod.FULLY_DILUTED_VALUATION]: (
@@ -312,7 +311,7 @@ export const HEADER_DESCRIPTIONS: Record<TokenSortMethod, ReactNode | undefined>
     </Trans>
   ),
   [TokenSortMethod.VOLUME]: (
-    <Trans>Volume is the amount of the asset that has been traded on Uniswap v3 during the selected time frame.</Trans>
+    <Trans>Volume is the amount of the asset that has been traded on T-DREX during the selected time frame.</Trans>
   ),
 }
 
@@ -490,7 +489,7 @@ export const LoadedRow = forwardRef((props: LoadedRowProps, ref: ForwardedRef<HT
           listNumber={sortRank}
           tokenInfo={
             <ClickableName>
-               <CircleLogoImage size='36px' src={token.project.logoUrl} />
+              <CircleLogoImage size="36px" src={token.project.logoUrl} />
               <TokenInfoCell>
                 <TokenName data-cy="token-name">{token.name}</TokenName>
                 <TokenSymbol>{token.symbol}</TokenSymbol>

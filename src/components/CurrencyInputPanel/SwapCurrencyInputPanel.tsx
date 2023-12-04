@@ -270,7 +270,7 @@ const SwapCurrencyInputPanel = forwardRef<HTMLInputElement, SwapCurrencyInputPan
       numericalInputSettings,
       label,
       ...rest
-    },
+    }: SwapCurrencyInputPanelProps,
     ref
   ) => {
     const [modalOpen, setModalOpen] = useState(false)
@@ -296,6 +296,7 @@ const SwapCurrencyInputPanel = forwardRef<HTMLInputElement, SwapCurrencyInputPan
 
     // reset tooltip state when currency changes
     useEffect(() => setTooltipVisible(false), [currency])
+    console.log('currency', currency)
 
     return (
       <InputPanel id={id} hideInput={hideInput} {...rest}>
@@ -364,6 +365,7 @@ const SwapCurrencyInputPanel = forwardRef<HTMLInputElement, SwapCurrencyInputPan
                           className="token-symbol-container"
                           active={Boolean(currency && currency.symbol)}
                         >
+                          {/* TODO -> ALTERAR TEXTO DO DROPDOWN */}
                           {(currency && currency.symbol && currency.symbol.length > 20
                             ? currency.symbol.slice(0, 4) +
                               '...' +

@@ -49,7 +49,7 @@ const Web3StatusGeneric = styled(ButtonSecondary)`
 const Web3StatusConnectWrapper = styled.div`
   ${flexRowNoWrap};
   align-items: center;
-  background-color: ${({ theme }) => theme.accent2};
+  background-color: ${({ theme }) => theme.accent3};
   border-radius: ${FULL_BORDER_RADIUS}px;
   border: none;
   padding: 0;
@@ -57,9 +57,9 @@ const Web3StatusConnectWrapper = styled.div`
 
   color: ${({ theme }) => theme.accent1};
   :hover {
-    color: ${({ theme }) => theme.accent1};
+    color: ${({ theme }) => theme.accent2};
     stroke: ${({ theme }) => theme.accent2};
-    background-color: ${({ theme }) => darken(0.015, theme.accent2)};
+    background-color: ${({ theme }) => darken(0.015, theme.accent1)};
   }
 
   transition: ${({

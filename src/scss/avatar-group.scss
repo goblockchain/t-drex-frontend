@@ -1,0 +1,55 @@
+// Avatar group
+@import './_variables.scss';
+
+$avatar-group-border: $white;
+
+.avatar-group {
+  // Avatar Group Sizings
+  .avatar {
+    margin-right: -0.785rem;
+    margin-left: 0;
+  }
+  .avatar-sm {
+    margin-right: -0.65rem;
+  }
+  .avatar-lg {
+    margin-right: -1.5rem;
+  }
+  .avatar-xl {
+    margin-right: -1.85rem;
+  }
+}
+
+.avatar-group {
+  display: flex;
+  justify-content: flex-start;
+  .avatar {
+    transition: all 0.25s ease;
+    img,
+    .avatar-content {
+      box-shadow: 0 0 0 2px $avatar-group-border, inset 0 0 0 1px rgba($black, 0.07);
+    }
+    .avatar-content {
+      background-color: tint-color($secondary, 20%) !important;
+    }
+    &:hover {
+      transition: all 0.25s ease;
+    }
+    &.pull-up:hover {
+      transform: translateY(-4px) scale(1.07);
+    }
+  }
+  // Avatar Group Sizings
+  .avatar:not(:first-child) {
+    margin-left: 0.2rem;
+  }
+  .avatar-sm:not(:first-child) {
+    margin-left: -0.4rem;
+  }
+  .avatar-lg:not(:first-child) {
+    margin-left: -1rem;
+  }
+  .avatar-xl:not(:first-child) {
+    margin-left: -1.5rem;
+  }
+}

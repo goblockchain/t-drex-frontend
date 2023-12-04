@@ -105,17 +105,17 @@ export const SmallButtonPrimary = styled(ButtonPrimary)`
 `
 
 const BaseButtonLight = styled(BaseButton)`
-  background-color: ${({ theme }) => theme.accent2};
-  color: ${({ theme }) => theme.accent1};
+  background-color: ${({ theme }) => theme.accent1};
+  color: ${({ theme }) => theme.accent2};
   font-size: 20px;
   font-weight: 535;
 
   &:focus {
-    box-shadow: 0 0 0 1pt ${({ theme, disabled }) => !disabled && theme.accent2};
-    background-color: ${({ theme, disabled }) => !disabled && theme.accent2};
+    box-shadow: 0 0 0 1pt ${({ theme, disabled }) => !disabled && theme.accent1};
+    background-color: ${({ theme, disabled }) => !disabled && theme.accent1};
   }
   &:hover {
-    background-color: ${({ theme, disabled }) => !disabled && theme.accent2};
+    background-color: ${({ theme, disabled }) => !disabled && theme.accent1};
   }
   &:active {
     box-shadow: 0 0 0 1pt ${({ theme, disabled }) => !disabled && theme.accent2};

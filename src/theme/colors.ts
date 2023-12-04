@@ -23,10 +23,10 @@ export const colors = {
   gray900: '#0D111C',
   gray950: '#080B11',
   pink50: '#F9ECF1',
-  pink100: '#FFD9E4',
-  pink200: '#FBA4C0',
-  pink300: '#FF6FA3',
-  pink400: '#FB118E',
+  pink100: '#B5F8C0',
+  pink200: '#94F1A3',
+  pink300: '#27D143',
+  pink400: '#00AE1D',
   pink500: '#C41969',
   pink600: '#8C0F49',
   pink700: '#55072A',
@@ -82,7 +82,7 @@ export const colors = {
   blue900: '#040E34',
   blueVibrant: '#587BFF',
   // TODO: add magenta 50-900
-  magenta300: '#FD82FF',
+  magenta300: '#40B66B',
   magentaVibrant: '#3B9F32',
   purple300: '#8440F2',
   purple900: '#1C0337',
@@ -108,6 +108,8 @@ export const colors = {
   surface5_dark: '#00000004',
   accent1_dark: '#3B9F32',
   accent2_dark: '#311C31',
+  accent3_dark: '#1AD977',
+  accent3_light: '#C7FADB',
   neutral1_light: '#222222',
   neutral2_light: '#7D7D7D',
   neutral3_light: '#CECECE',
@@ -116,7 +118,7 @@ export const colors = {
   surface3_light: '#22222212',
   surface4_light: '#FFFFFF64',
   surface5_light: '#00000004',
-  accent1_light: '#3B9F32',
+  accent1_light: '#1D9D12',
   accent2_light: '#FFEFFF',
   success: '#40B66B',
   critical: '#FF5F52',
@@ -150,7 +152,7 @@ const commonTheme = {
   chain_56_background: colors.networkBsc,
   promotional: colors.magenta300,
 
-  brandedGradient: 'linear-gradient(139.57deg, #FF79C9 4.35%, #FFB8E2 96.44%);',
+  brandedGradient: 'linear-gradient(139.57deg, #40B66B 4.35%, #94F1A3 96.44%);',
   promotionalGradient: colors.accent1_light,
 }
 
@@ -171,6 +173,7 @@ export const darkTheme = {
 
   accent1: colors.accent1_dark,
   accent2: colors.accent2_dark,
+  accent3: colors.accent3_dark,
   success: colors.success,
   critical: colors.critical,
   scrim: colors.scrim,
@@ -193,6 +196,7 @@ export const lightTheme: Theme = {
 
   accent1: colors.accent1_light,
   accent2: colors.accent2_light,
+  accent3: colors.accent3_light,
 
   success: colors.success,
   critical: colors.critical,
