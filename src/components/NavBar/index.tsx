@@ -37,7 +37,7 @@ interface MenuItemProps {
   dataTestId?: string
 }
 
-const MenuItem = ({ href, dataTestId, id, isActive, children }: MenuItemProps) => {
+const MenuItem = ({ href = '/', dataTestId, id, isActive, children }: MenuItemProps) => {
   return (
     <NavLink
       to={href}
@@ -64,9 +64,14 @@ export const PageTabs = () => {
 
   return (
     <>
-      <MenuItem href="/swap" isActive={pathname.startsWith('/swap')}>
+      <a
+        href="https://tdrex.vercel.app/"
+        target="_blank"
+        style={{ textDecoration: 'none', color: '#7D7D7D' }}
+        rel="noreferrer"
+      >
         <Trans>Swap</Trans>
-      </MenuItem>
+      </a>
       {infoExplorePageEnabled ? (
         <MenuItem href={`/explore/tokens/${chainName.toLowerCase()}`} isActive={pathname.startsWith('/explore')}>
           <Trans>Explore</Trans>
@@ -117,7 +122,7 @@ const Navbar = ({ blur }: { blur: boolean }) => {
       <Nav>
         <Box display="flex" height="full" flexWrap="nowrap">
           <Box className={styles.leftSideContainer}>
-            <Box className={styles.logoContainer}>
+            <Box className={styles.logoContainer} onClick={handleDinoIconClick}>
               <img src="/images/logos/main_logo.png" width={48} />
             </Box>
             {!isNftPage && (

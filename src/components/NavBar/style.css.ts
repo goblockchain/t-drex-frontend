@@ -8,6 +8,7 @@ export const logoContainer = style([
     display: 'flex',
     marginRight: '12',
     alignItems: 'center',
+    cursor: 'pointer',
   }),
 ])
 

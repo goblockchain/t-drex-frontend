@@ -1,14 +1,10 @@
 import { Trans } from '@lingui/macro'
 import { BrowserEvent, InterfaceElementName, InterfacePageName, SharedEventName } from '@uniswap/analytics-events'
 import { Trace, TraceEvent } from 'analytics'
-import { ReactComponent as UniswapAppLogo } from 'assets/svg/uniswap_app_logo.svg'
-import { AboutFooter } from 'components/About/AboutFooter'
-import Card, { CardType } from 'components/About/Card'
-import { MAIN_CARDS, MORE_CARDS } from 'components/About/constants'
+import { MAIN_CARDS } from 'components/About/constants'
 import ProtocolBanner from 'components/About/ProtocolBanner'
 import { useAccountDrawer } from 'components/AccountDrawer'
 import { BaseButton } from 'components/Button'
-import { AppleLogo } from 'components/Logo/AppleLogo'
 import { useAndroidGALaunchFlagEnabled } from 'featureFlags/flags/androidGALaunch'
 import { useDisableNFTRoutes } from 'hooks/useDisableNFTRoutes'
 import Swap from 'pages/Swap'
@@ -22,7 +18,6 @@ import { BREAKPOINTS } from 'theme'
 import { useIsDarkMode } from 'theme/components/ThemeToggle'
 import { TRANSITION_DURATIONS } from 'theme/styles'
 import { Z_INDEX } from 'theme/zIndex'
-import { getDownloadAppLinkProps } from 'utils/openDownloadApp'
 
 const PageContainer = styled.div`
   position: absolute;
@@ -350,9 +345,10 @@ export default function Landing() {
             name={SharedEventName.ELEMENT_CLICKED}
             element={InterfaceElementName.LANDING_PAGE_SWAP_ELEMENT}
           >
-            <Link to="/swap">
-              <LandingSwap />
-            </Link>
+            <img
+              style={{ borderRadius: '20px 20px' }}
+              src="https://github.com/goblockchain/t-drex-frontend/assets/90073210/e5ce8a9a-cedb-45bd-995f-657870bda1f2"
+            />
           </TraceEvent>
         </LandingSwapContainer>
         <Gradient isDarkMode={isDarkMode} />
@@ -361,18 +357,17 @@ export default function Landing() {
         </GlowContainer>
         <ContentContainer isDarkMode={isDarkMode}>
           <TitleText isDarkMode={isDarkMode}>
-            {shouldDisableNFTRoutes ? (
-              <Trans>Trade crypto with confidence</Trans>
-            ) : (
-              <Trans>Trade crypto and NFTs with confidence</Trans>
-            )}
+            {shouldDisableNFTRoutes ? <Trans>Trade crypto with confidence</Trans> : <Trans>T-DREX</Trans>}
           </TitleText>
           <SubTextContainer>
             <SubText>
               {shouldDisableNFTRoutes ? (
-                <Trans>Buy, sell, and explore tokens</Trans>
+                <Trans>Buy, sell, and explore assets</Trans>
               ) : (
-                <Trans>Buy, sell, and explore tokens and NFTs</Trans>
+                <Trans>
+                  Resolvemos o problema de liquidez e flexibilidade dos títulos públicos federais, permitindo o acesso
+                  de empresas de qualquer lugar do mundo e de outros países.
+                </Trans>
               )}
             </SubText>
           </SubTextContainer>
@@ -382,11 +377,13 @@ export default function Landing() {
               name={SharedEventName.ELEMENT_CLICKED}
               element={InterfaceElementName.CONTINUE_BUTTON}
             >
-              <ButtonCTA as={Link} to="/swap">
-                <ButtonCTAText>
-                  <Trans>Get started</Trans>
-                </ButtonCTAText>
-              </ButtonCTA>
+              <a href="https://tdrex.vercel.app/" target="_blank" style={{ textDecoration: 'none' }} rel="noreferrer">
+                <ButtonCTA>
+                  <ButtonCTAText>
+                    <Trans>Comece agora</Trans>
+                  </ButtonCTAText>
+                </ButtonCTA>
+              </a>
             </TraceEvent>
           </ActionsContainer>
           <LearnMoreContainer
@@ -394,45 +391,11 @@ export default function Landing() {
               cardsRef?.current?.scrollIntoView({ behavior: 'smooth' })
             }}
           >
-            <Trans>Learn more</Trans>
+            <Trans>Saiba mais</Trans>
           </LearnMoreContainer>
-
-          <DownloadWalletLink
-            {...getDownloadAppLinkProps({
-              element: InterfaceElementName.UNISWAP_WALLET_LANDING_PAGE_DOWNLOAD_BUTTON,
-              isAndroidGALaunched,
-            })}
-          >
-            {isAndroidGALaunched ? (
-              <>
-                <UniswapAppLogo width="20" height="20" />
-                Download the T-DREX app
-              </>
-            ) : (
-              <>
-                <AppleLogo width="20" height="20" />
-                Download the T-DREX app for iOS
-              </>
-            )}
-          </DownloadWalletLink>
         </ContentContainer>
         <AboutContentContainer isDarkMode={isDarkMode}>
-          <CardGrid cols={cards.length} ref={cardsRef}>
-            {cards.map(({ darkBackgroundImgSrc, lightBackgroundImgSrc, ...card }) => (
-              <Card
-                {...card}
-                backgroundImgSrc={isDarkMode ? darkBackgroundImgSrc : lightBackgroundImgSrc}
-                key={card.title}
-              />
-            ))}
-          </CardGrid>
-          <CardGrid cols={MORE_CARDS.length}>
-            {MORE_CARDS.map(({ darkIcon, lightIcon, ...card }) => (
-              <Card {...card} icon={isDarkMode ? darkIcon : lightIcon} key={card.title} type={CardType.Secondary} />
-            ))}
-          </CardGrid>
           <ProtocolBanner />
-          <AboutFooter />
         </AboutContentContainer>
       </PageContainer>
     </Trace>

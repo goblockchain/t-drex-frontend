@@ -170,7 +170,7 @@ export function PoolDetailsStats({ poolData, isReversed, chainId, loading }: Poo
   return (
     <StatsWrapper>
       <HeaderText>
-        <Trans>Stats</Trans>
+        <Trans>Estatísticas</Trans>
       </HeaderText>
       <StatItemColumn>
         <ThemedText.BodySecondary>
