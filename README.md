@@ -6,6 +6,9 @@
  - Our mission is to enable financial infrastructure to have more efficiency, security and liquidity <br />
  - T-Drex product solve the problem of liquidity and flexibility of federal public securities, allowing access by companies from anywhere in the world and other countries.
 
+ # Our Pitch Deck
+ [Click here to access](https://www.canva.com/design/DAF01t5gs3Y/aMABoKWOiMVfthMVLiAP9A/view?utm_content=DAF01t5gs3Y&utm_campaign=designshare&utm_medium=link&utm_source=editor)
+
 ## Contributions
 For steps on local deployment, development, and code contribution, please see [CONTRIBUTING](./CONTRIBUTING.md).
 
