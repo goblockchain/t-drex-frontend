@@ -365,8 +365,8 @@ export default function Landing() {
                 <Trans>Buy, sell, and explore assets</Trans>
               ) : (
                 <Trans>
-                  Resolvemos o problema de liquidez e flexibilidade dos títulos públicos federais, permitindo o acesso
-                  de empresas de qualquer lugar do mundo e de outros países.
+                  Resolvemos o problema de liquidez e flexibilidade para aquisição de títulos públicos federais,
+                  permitindo o acesso para instituições de qualquer lugar do mundo.
                 </Trans>
               )}
             </SubText>
