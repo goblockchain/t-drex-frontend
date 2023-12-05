@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unused-modules */
 import { Trans } from '@lingui/macro'
 import { InterfaceElementName } from '@uniswap/analytics-events'
 import { useAndroidGALaunchFlagEnabled } from 'featureFlags/flags/androidGALaunch'
@@ -10,17 +11,7 @@ import { openDownloadApp } from 'utils/openDownloadApp'
 import { isMobileSafari } from 'utils/userAgent'
 
 import androidAnnouncementBannerQR from '../../../assets/images/androidAnnouncementBannerQR.png'
-import darkAndroidThumbnail from '../../../assets/images/AndroidWallet-Thumbnail-Dark.png'
-import lightAndroidThumbnail from '../../../assets/images/AndroidWallet-Thumbnail-Light.png'
-import {
-  Container,
-  DownloadButton,
-  PopupContainer,
-  StyledQrCode,
-  StyledXButton,
-  TextContainer,
-  Thumbnail,
-} from './styled'
+import { Container, DownloadButton, PopupContainer, StyledQrCode, StyledXButton, TextContainer } from './styled'
 
 export default function AndroidAnnouncementBanner() {
   const [hideAndroidAnnouncementBanner, toggleHideAndroidAnnouncementBanner] = useHideAndroidAnnouncementBanner()
@@ -41,12 +32,11 @@ export default function AndroidAnnouncementBanner() {
   if (!isAndroidGALaunched || isMobileSafari) return null
 
   return (
-    <PopupContainer show={shouldDisplay}>
+    <PopupContainer show={false}>
       <Container>
-        <Thumbnail src={isDarkMode ? darkAndroidThumbnail : lightAndroidThumbnail} alt="Android app thumbnail" />
         <TextContainer onClick={!screenSize['xs'] ? onClick : undefined}>
           <ThemedText.BodySmall lineHeight="20px">
-            <Trans>Uniswap on Android</Trans>
+            <Trans>T-DREX on Android</Trans>
           </ThemedText.BodySmall>
           <ThemedText.LabelMicro>
             <Trans>Available now - download from the Google Play Store today</Trans>
