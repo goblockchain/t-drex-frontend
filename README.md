@@ -9,7 +9,7 @@
 ## Contributions
 For steps on local deployment, development, and code contribution, please see [CONTRIBUTING](./CONTRIBUTING.md).
 
-#### Licença
+## License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE.md) file for details.
 
 ### Built With
