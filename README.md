@@ -2,9 +2,9 @@
   <img src="https://github.com/goblockchain/t-drex-frontend/assets/90073210/e5ce8a9a-cedb-45bd-995f-657870bda1f2" />
 </div>
 
-# T-Drex
+# T-Drex Protocol 
  - Our mission is to enable financial infrastructure to have more efficiency, security and liquidity <br />
- - T-DREX product solve the problem of liquidity and flexibility of federal public securities, allowing access by companies from anywhere in the world and other countries.
+ - T-Drex product solve the problem of liquidity and flexibility of federal public securities, allowing access by companies from anywhere in the world and other countries.
 
 ## Contributions
 For steps on local deployment, development, and code contribution, please see [CONTRIBUTING](./CONTRIBUTING.md).
