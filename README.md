@@ -7,11 +7,16 @@
  - Our mission is to enable financial infrastructure to have more efficiency, security and liquidity <br />
  - T-DREX product solve the problem of liquidity and flexibility of federal public securities, allowing access by companies from anywhere in the world and other countries.
 
-Check out `our pitch deck` in [t-drex pitch deck](https://www.notion.so/Pitch-Deck-e14d7f72769c46f2a315056b1c526ceb)
-
-
 ## Contributions
 For steps on local deployment, development, and code contribution, please see [CONTRIBUTING](./CONTRIBUTING.md).
+
+#### Licença
+This project is licensed under the MIT License - see the [LICENSE](LICENSE.md) file for details.
+
+### Built With
+- Uniswap v3 - DeFi Infrastructure
+- React - Frontend Framework
+- Solidity - Smart Contracts Language
 
 #### PR Title
 Your PR title must follow [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/#summary), and should start with one of the following [types](https://github.com/angular/angular/blob/22b96b9/CONTRIBUTING.md#type):
@@ -38,5 +43,5 @@ Other things to note:
 - PRs with multiple changes should use a list of verb statements
 - Add any relevant unit / integration tests
 - Changes will be previewable via vercel. Non-obvious changes should include instructions for how to reproduce them
-  
 
+*satoshilives*
