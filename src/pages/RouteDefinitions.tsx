@@ -32,6 +32,7 @@ const RemoveLiquidity = lazy(() => import('pages/RemoveLiquidity'))
 const RemoveLiquidityV3 = lazy(() => import('pages/RemoveLiquidity/V3'))
 const TokenDetails = lazy(() => import('pages/TokenDetails'))
 const Vote = lazy(() => import('pages/Vote'))
+const Participants = lazy(() => import('pages/Participants'))
 
 // this is the same svg defined in assets/images/blue-loader.svg
 // it is defined here because the remote asset may not have had time to load when this file is executing
@@ -113,6 +114,10 @@ export const routes: RouteDefinition[] = [
     nestedPaths: [':tab/:chainName'],
     getElement: () => <Explore />,
     enabled: (args) => Boolean(args.infoExplorePageEnabled),
+  }),
+  createRouteDefinition({
+    path: '/participants',
+    getElement: () => <Participants />,
   }),
   createRouteDefinition({
     path: '/explore/tokens/:chainName/:tokenAddress',

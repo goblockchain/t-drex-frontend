@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unused-modules */
 import { Trans } from '@lingui/macro'
 import { BrowserEvent, InterfaceElementName, InterfacePageName, SharedEventName } from '@uniswap/analytics-events'
 import { TraceEvent } from 'analytics'
@@ -5,6 +6,7 @@ import { Trace } from 'analytics'
 import { AutoRow } from 'components/Row'
 import { MAX_WIDTH_MEDIA_BREAKPOINT, MEDIUM_MEDIA_BREAKPOINT } from 'components/Tokens/constants'
 import { filterStringAtom } from 'components/Tokens/state'
+import ParticipantsTable from 'components/Tokens/TokenTable/ParticipantsTable'
 import TokenTable from 'components/Tokens/TokenTable/TokenTable'
 import { MouseoverTooltip } from 'components/Tooltip'
 import { useInfoExplorePageEnabled } from 'featureFlags/flags/infoExplore'
@@ -184,7 +186,7 @@ const Explore = ({ initialTab }: { initialTab?: ExploreTab }) => {
               placement="bottom"
             >
               <ThemedText.LargeHeader>
-                <Trans>Top tokens on T-DREX</Trans>
+                <Trans>Participantes</Trans>
               </ThemedText.LargeHeader>
             </MouseoverTooltip>
           </TitleContainer>
@@ -212,29 +214,8 @@ const Explore = ({ initialTab }: { initialTab?: ExploreTab }) => {
               })}
             </TabBar>
           )}
-          {/* {isInfoExplorePageEnabled ? (
-            <FiltersContainer isInfoExplorePageEnabled>
-              <DropdownFilterContainer isInfoExplorePageEnabled>
-                <NetworkFilter />
-                {currentKey === ExploreTab.Tokens && <TimeSelector />}
-              </DropdownFilterContainer>
-              <SearchContainer isInfoExplorePageEnabled>
-                {currentKey !== ExploreTab.Transactions && <SearchBar tab={currentKey} />}
-              </SearchContainer>
-            </FiltersContainer>
-          ) : (
-            <>
-              <FiltersContainer isInfoExplorePageEnabled={false}>
-                <NetworkFilter />
-                <TimeSelector />
-              </FiltersContainer>
-              <SearchContainer isInfoExplorePageEnabled={false}>
-                <SearchBar />
-              </SearchContainer>
-            </>
-          )} */}
         </NavWrapper>
-        {isInfoExplorePageEnabled ? <Page /> : <TokenTable />}
+        {isInfoExplorePageEnabled ? <Page /> : <ParticipantsTable />}
       </ExploreContainer>
     </Trace>
   )
