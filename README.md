@@ -32,4 +32,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE.md) f
 - [TS29]	0xbe95469b559ebf8e37fdcbe09c289068d9ca7636	TOKEN ID - 4
 
 ## Web Application 
-[link](https://tdrex-home.vercel.app/)
+[TDrex Application](https://tdrex-home.vercel.app/)
